@@ -12,18 +12,21 @@ RSpec.describe 'As a user', type: :feature do
       visit '/books'
 
       within("#book-#{@book_1.id}") do
+        expect(page).to have_css("img[src='#{@book_1.image}']")
         expect(page).to have_content(@book_1.title)
         expect(page).to have_content(@book_1.pages)
         expect(page).to have_content(@book_1.year)
       end
 
       within("#book-#{@book_2.id}") do
+        expect(page).to have_css("img[src='#{@book_2.image}']")
         expect(page).to have_content(@book_2.title)
         expect(page).to have_content(@book_2.pages)
         expect(page).to have_content(@book_2.year)
       end
 
       within("#book-#{@book_3.id}") do
+        expect(page).to have_css("img[src='#{@book_3.image}']")
         expect(page).to have_content(@book_3.title)
         expect(page).to have_content(@book_3.pages)
         expect(page).to have_content(@book_3.year)
