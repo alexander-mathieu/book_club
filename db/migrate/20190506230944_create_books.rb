@@ -4,6 +4,7 @@ class CreateBooks < ActiveRecord::Migration[5.1]
       t.string :title
       t.integer :pages
       t.integer :year
+      t.string :image, default: "assets/default.png"
 
       t.timestamps
     end

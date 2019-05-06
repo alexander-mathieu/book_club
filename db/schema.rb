@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20190506230944) do
     t.string "title"
     t.integer "pages"
     t.integer "year"
+    t.string "image", default: "assets/default.png"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
