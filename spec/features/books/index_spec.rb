@@ -1,8 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe 'As a user', type: :feature do
-  describe 'When I visit /books' do
+RSpec.describe "As a user", type: :feature do
+  describe "When I visit /books" do
     before :each do
+      @user_1 = User.create!(name: "Anony-moose")
+      @user_2 = User.create!(name: "VinnyCheese")
+
       @author_1 = Author.create!(name: "Brennan Ayers")
       @author_2 = Author.create!(name: "John Flapjacks")
       @author_3 = Author.create!(name: "Patrick Duvall, M.D.")
@@ -12,9 +15,14 @@ RSpec.describe 'As a user', type: :feature do
       @book_2 = @author_2.books.create!(title: "Mars Aquatic", pages: 120, year: 1964)
       @book_3 = @author_3.books.create!(title: "Trip to Mars", pages: 480, year: 2020)
       @book_1.authors << @author_4
+
+      @review_1 = @book_1.reviews.create!(text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
+      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 3, user: @user_2)
+      @review_3 = @book_2.reviews.create!(text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
+      @review_4 = @book_3.reviews.create!(text: "This book went to the market!", rating: 4, user: @user_2)
     end
 
-    it 'I see all book titles in the database' do
+    it "I see all book titles in the database" do
       visit '/books'
 
       within("#book-#{@book_1.id}") do
@@ -40,6 +48,22 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content(@book_3.authors[0].name)
         expect(page).to have_content(@book_3.pages)
         expect(page).to have_content(@book_3.year)
+      end
+    end
+
+    it "I see an average review rating and amount of reviews on each book" do
+      visit '/books'
+      
+      within("#book-#{@book_1.id}") do
+        expect(page).to have_content("Average Rating: 4.0 (2)")
+      end
+
+      within("#book-#{@book_2.id}") do
+        expect(page).to have_content("Average Rating: 2.0 (1)")
+      end
+
+      within("#book-#{@book_3.id}") do
+        expect(page).to have_content("Average Rating: 4.0 (1)")
       end
     end
   end
