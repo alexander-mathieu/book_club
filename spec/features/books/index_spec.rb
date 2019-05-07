@@ -19,7 +19,7 @@ RSpec.describe "As a user", type: :feature do
       @review_1 = @book_1.reviews.create!(text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
       @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 3, user: @user_2)
       @review_3 = @book_2.reviews.create!(text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
-      @review_4 = @book_3.reviews.create!(text: "This book went to the market!", rating: 4, user: @user_2)
+      @review_4 = @book_3.reviews.create!(text: "This book went to the market!", rating: 3, user: @user_2)
     end
 
     it "I see all book titles in the database" do
@@ -53,7 +53,7 @@ RSpec.describe "As a user", type: :feature do
 
     it "I see an average review rating and amount of reviews on each book" do
       visit '/books'
-      
+
       within("#book-#{@book_1.id}") do
         expect(page).to have_content("Average Rating: 4.0 (2)")
       end
@@ -63,7 +63,35 @@ RSpec.describe "As a user", type: :feature do
       end
 
       within("#book-#{@book_3.id}") do
-        expect(page).to have_content("Average Rating: 4.0 (1)")
+        expect(page).to have_content("Average Rating: 3.0 (1)")
+      end
+    end
+
+    describe "I see sorting methods" do
+      it "to sort by average rating" do
+        visit '/books'
+
+        click_link 'Sort by: Lowest Rating'
+
+        expect(@book_2.title).to appear_before(@book_3.title)
+        expect(@book_3.title).to appear_before(@book_1.title)
+
+        click_link 'Sort by: Highest Rating'
+
+        expect(@book_1.title).to appear_before(@book_3.title)
+        expect(@book_3.title).to appear_before(@book_2.title)
+      end
+
+      it "to sort by number of pages" do
+        visit '/books'
+
+
+      end
+
+      it "to sort by number of reviews" do
+        visit '/books'
+
+
       end
     end
   end
