@@ -38,5 +38,10 @@ RSpec.describe Book, type: :model do
       expect(@book_1.average_rating).to eq(4.0)
       expect(@book_2.average_rating).to eq(2.0)
     end
+
+    it ".review_count" do
+      expect(@book_1.review_count).to eq(2)
+      expect(@book_2.review_count).to eq(1)
+    end
   end
 end

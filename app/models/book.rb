@@ -13,7 +13,7 @@ class Book < ApplicationRecord
     reviews.average(:rating)
   end
 
-  def method
-    #code
+  def review_count
+    reviews.count
   end
 end
