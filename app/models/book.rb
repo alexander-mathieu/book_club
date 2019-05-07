@@ -8,4 +8,12 @@ class Book < ApplicationRecord
   def author_names
     authors.pluck(:name)
   end
+
+  def average_rating
+    reviews.average(:rating)
+  end
+
+  def method
+    #code
+  end
 end
