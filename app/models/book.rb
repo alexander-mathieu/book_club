@@ -10,7 +10,9 @@ class Book < ApplicationRecord
   end
 
   def average_rating
-    reviews.average(:rating)
+    rating = reviews.average(:rating)
+    rating = 0 if rating == nil
+    rating
   end
 
   def review_count
@@ -19,9 +21,15 @@ class Book < ApplicationRecord
 
   def self.ratings_sort(order)
     if order == :desc
-      select('books.*, AVG(reviews.rating) AS average_rating').joins(:reviews).group('books.id').order('average_rating DESC')
+      select('books.*, COALESCE(AVG(reviews.rating), 0) AS average_rating')
+      .left_joins(:reviews)
+      .group('books.id')
+      .order('average_rating DESC')
     else
-      select('books.*, AVG(reviews.rating) AS average_rating').joins(:reviews).group('books.id').order('average_rating')
+      select('books.*, COALESCE(AVG(reviews.rating), 0) AS average_rating')
+      .left_joins(:reviews)
+      .group('books.id')
+      .order('average_rating')
     end
   end
 
@@ -31,9 +39,15 @@ class Book < ApplicationRecord
 
   def self.reviews_sort(order)
     if order == :desc
-      select('books.*, COUNT(reviews) AS review_count').joins(:reviews).group('books.id').order('review_count DESC')
+      select('books.*, COUNT(reviews) AS review_count')
+      .left_joins(:reviews)
+      .group('books.id')
+      .order('review_count DESC')
     else
-      select('books.*, COUNT(reviews) AS review_count').joins(:reviews).group('books.id').order('review_count')
+      select('books.*, COUNT(reviews) AS review_count')
+      .left_joins(:reviews)
+      .group('books.id')
+      .order('review_count')
     end
   end
 
