@@ -17,15 +17,16 @@ class Book < ApplicationRecord
     reviews.count
   end
 
-  def self.rating_sort(param)
-    order(:average_rating)
+  def self.rating_sort(order)
+    if order == :desc
+      select('books.*, AVG(reviews.rating) AS average_rating').joins(:reviews).group('books.id').order('average_rating DESC')
+    else
+      select('books.*, AVG(reviews.rating) AS average_rating').joins(:reviews).group('books.id').order('average_rating')
+    end
+  end
+
+  def self.pages_sort(order)
+    order(pages: order)
   end
 
 end
-
-# def self.order_by(param, type = nil)
-#   if type == nil
-#     type = "asc"
-#   end
-#   order("#{param} #{type}")
-# end
