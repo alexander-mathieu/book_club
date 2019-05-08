@@ -16,4 +16,16 @@ class Book < ApplicationRecord
   def review_count
     reviews.count
   end
+
+  def self.rating_sort(param)
+    order(:average_rating)
+  end
+
 end
+
+# def self.order_by(param, type = nil)
+#   if type == nil
+#     type = "asc"
+#   end
+#   order("#{param} #{type}")
+# end
