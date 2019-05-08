@@ -68,31 +68,37 @@ RSpec.describe "As a user", type: :feature do
     end
 
     describe "I see sorting methods" do
-      it "to sort by average rating" do
-        visit '/books'
+      # it "to sort by average rating" do
+      #   visit '/books'
+      #
+      #   # click_link 'Sort by: Lowest Rating'
+      #   visit '/books?rating=desc'
+      #   expect(@book_2.title).to appear_before(@book_3.title)
+      #   expect(@book_3.title).to appear_before(@book_1.title)
+      #
+      #   click_link 'Sort by: Highest Rating'
+      #
+      #   expect(@book_1.title).to appear_before(@book_3.title)
+      #   expect(@book_3.title).to appear_before(@book_2.title)
+      # end
 
-        click_link 'Sort by: Lowest Rating'
-
-        expect(@book_2.title).to appear_before(@book_3.title)
-        expect(@book_3.title).to appear_before(@book_1.title)
-
-        click_link 'Sort by: Highest Rating'
-
-        expect(@book_1.title).to appear_before(@book_3.title)
-        expect(@book_3.title).to appear_before(@book_2.title)
-      end
-
-      it "to sort by number of pages" do
-        visit '/books'
-
-
-      end
-
-      it "to sort by number of reviews" do
-        visit '/books'
-
-
-      end
+    #   it "to sorts by number of pages" do
+    #     visit '/books'
+    #     save_and_open_page
+    #     click_link 'Sort by: Most Pages'
+    #
+    #     expect(@book_3.title).to appear_before(@book_2.title)
+    #     expect(@book_2.title).to appear_before(@book_1.title)
+    #
+    #     click_link 'Sort by: Least Pages'
+    #
+    #     expect(@book_1.title).to appear_before(@book_2.title)
+    #     expect(@book_2.title).to appear_before(@book_3.title)
+    #   end
+    #
+    #   it "to sorts by number of reviews" do
+    #
+    #   end
     end
   end
 end
