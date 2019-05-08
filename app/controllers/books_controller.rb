@@ -3,7 +3,7 @@ class BooksController < ApplicationController
     @books = Book.all
     if params[:ratings] != nil
       sort_order  = find_order(params[:ratings])
-      @books = @books.rating_sort(sort_order)
+      @books = @books.ratings_sort(sort_order)
     elsif params[:pages] != nil
       sort_order = find_order(params[:pages])
       @books = @books.pages_sort(sort_order)
