@@ -1,14 +1,18 @@
 class BooksController < ApplicationController
   def index
     @books = Book.all
-    if params[:rating] != nil
-      @books = @books.rating_sort(params[:rating])
+    if params[:ratings] != nil
+      sort_order  = find_order(params[:ratings])
+      @books = @books.rating_sort(sort_order)
     elsif params[:pages] != nil
-      @books = @books.pages_sort(params[:pages])
+      sort_order = find_order(params[:pages])
+      @books = @books.pages_sort(sort_order)
     end
   end
-end
 
-# if params[:sort] != nil
-#   @sorted_books = @books.order_by(params[:sort], params[:type])
-# end
+  private
+
+  def find_order(value)
+    value.start_with?("high") ? :desc : :asc
+  end
+end
