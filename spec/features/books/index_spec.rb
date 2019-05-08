@@ -27,6 +27,7 @@ RSpec.describe "As a user", type: :feature do
 
       within("#book-#{@book_1.id}") do
         expect(page).to have_css("img[src='#{@book_1.image}']")
+
         expect(page).to have_content(@book_1.title)
         expect(page).to have_content(@book_1.authors[0].name)
         expect(page).to have_content(@book_1.authors[1].name)
@@ -36,6 +37,7 @@ RSpec.describe "As a user", type: :feature do
 
       within("#book-#{@book_2.id}") do
         expect(page).to have_css("img[src='#{@book_2.image}']")
+
         expect(page).to have_content(@book_2.title)
         expect(page).to have_content(@book_2.authors[0].name)
         expect(page).to have_content(@book_2.pages)
@@ -44,6 +46,7 @@ RSpec.describe "As a user", type: :feature do
 
       within("#book-#{@book_3.id}") do
         expect(page).to have_css("img[src='#{@book_3.image}']")
+        
         expect(page).to have_content(@book_3.title)
         expect(page).to have_content(@book_3.authors[0].name)
         expect(page).to have_content(@book_3.pages)
@@ -97,17 +100,19 @@ RSpec.describe "As a user", type: :feature do
       end
 
       it "to sorts by number of reviews" do
+        review_5 = @book_2.reviews.create!(text: "THIS BOOK IS!", rating: 5, user: @user_1)
+        review_6 = @book_1.reviews.create!(text: "BOOK!", rating: 5, user: @user_2)
         visit '/books'
 
         click_link 'Sort by: Most Reviews'
 
-        expect(@book_1.title).to appear_before(@book_2)
-        expect(@book_2.title).to appear_before(@book_3)
+        expect(@book_1.title).to appear_before(@book_2.title)
+        expect(@book_2.title).to appear_before(@book_3.title)
 
         click_link 'Sort by: Least Reviews'
 
-        expect(@book_3.title).to appear_before(@book_2)
-        expect(@book_2.title).to appear_before(@book_1)
+        expect(@book_3.title).to appear_before(@book_2.title)
+        expect(@book_3.title).to appear_before(@book_1.title)
       end
     end
   end
