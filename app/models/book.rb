@@ -17,7 +17,7 @@ class Book < ApplicationRecord
     reviews.count
   end
 
-  def self.rating_sort(order)
+  def self.ratings_sort(order)
     if order == :desc
       select('books.*, AVG(reviews.rating) AS average_rating').joins(:reviews).group('books.id').order('average_rating DESC')
     else
@@ -27,6 +27,14 @@ class Book < ApplicationRecord
 
   def self.pages_sort(order)
     order(pages: order)
+  end
+
+  def self.reviews_sort(order)
+    if order == :desc
+      select('books.*, COUNT(reviews) AS review_count').joins(:reviews).group('books.id').order('review_count DESC')
+    else
+      select('books.*, COUNT(reviews) AS review_count').joins(:reviews).group('books.id').order('review_count')
+    end
   end
 
 end
