@@ -23,15 +23,37 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    @book.save
+    add_authors(@book)
 
-    redirect_to(book_path(@book))
+    if @book.save == true
+      flash.notice = "'#{@book.title}' was added."
+      redirect_to(book_path(@book))
+    else
+      flash.notice = "Looks like that title is already in the nook!"
+      redirect_to new_book_path
+    end
   end
 
   private
 
   def book_params
     params.require(:book).permit(:title, :pages, :year, :image)
+  end
+
+  def add_authors(book)
+    create_authors.each do |author|
+      book.authors << author
+    end
+  end
+
+  def create_authors
+    split_authors.map do |author|
+      Author.find_or_create_by(name: author.titlecase)
+    end
+  end
+
+  def split_authors
+    params[:book][:authors].split(", ")
   end
 
   def find_order(value)
