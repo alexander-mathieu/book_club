@@ -32,6 +32,19 @@ RSpec.describe 'As a user', type: :feature do
       fill_in "Review", with: "What a book!"
 
       click_button "Create Review"
+
+      new_review = Review.last
+
+      expect(current_path).to eq(books_path(@book))
+
+      # within(".reviews-list") do
+      #   within("#review-#{new_review.id}") do
+      #     expect(page).to have_content(new_review.title)
+      #     expect(page).to have_content(new_review.user.name)
+      #     expect(page).to have_content(new_review.rating)
+      #     expect(page).to have_content(new_review.text)
+      #   end
+      # end
     end
   end
 end
