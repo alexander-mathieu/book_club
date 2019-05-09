@@ -1,0 +1,20 @@
+<h2><%= @book.title %></h2>
+
+<img src="<%= @book.image %>" alt="<%= @book.title %>"/>
+
+<section id="book-<%= @book.id %>-info">
+  <p>Pages: <%= @book.pages %></p>
+  <p>Published: <%= @book.year %></p>
+  <p>Author(s): <%= @book.author_names.join(", ") %></p>
+</section>
+
+<section class="reviews-list">
+  <h3>Reviews:</h3>
+  <% @book.reviews.each do |review| %>
+    <div id="review-<%= review.id %>">
+      <h5><%= review.title %></h5>
+      <p><%= review.user.name %>, <%= review.rating %> Stars</p>
+      <p><%= review.text %></p>
+    </div>
+    <% end %>
+</section>
