@@ -63,15 +63,30 @@ RSpec.describe "as a user" do
 
         expect(page).to have_content("'#{book.title}' was added.")
       end
+
+      it "I see in the flash notice that the book's title is titlecased" do
+        visit new_book_path
+
+        fill_in "Title:", with: "trip to mars"
+        fill_in "Number of Pages:", with: 480
+        fill_in "Year Published:", with: 2020
+        fill_in "Author(s):", with: "Patrick Duvall"
+
+        click_button "Add Book"
+
+        book = Book.last
+
+        expect(page).to have_content("'#{book.title.titlecase}' was added.")
+      end
     end
 
     describe "and try to add a book that is already in the database" do
       it "I'm notified that adding the book was unsuccessful" do
-        Book.create!(title: "Trip to Mars", pages: 480, year: 2020)
+        Book.create!(title: "Trip To Mars", pages: 480, year: 2020)
 
         visit new_book_path
 
-        fill_in "Title:", with: "Trip to Mars"
+        fill_in "Title:", with: "Trip To Mars"
         fill_in "Number of Pages:", with: 480
         fill_in "Year Published:", with: 2020
         fill_in "Author(s):", with: "Patrick Duvall"
