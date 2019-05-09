@@ -29,7 +29,7 @@ RSpec.describe 'As a user', type: :feature do
       fill_in "Title", with: "Wow!"
       fill_in "Username", with: "Billy"
       choose "5"
-      fill_in "Title", with: "What a book!"
+      fill_in "Review", with: "What a book!"
 
       click_button "Create Review"
     end
