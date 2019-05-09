@@ -1,14 +1,14 @@
 <h2>New Review</h2>
 
-<%= form_for @new_review do |f| %>
+<%= form_for @new_review, url: {action: :new} do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-  <%= f.label :username %>
-  <%= f.text_field :username %>
+  <%= label :user, :name, "Username" %>
+  <%= text_field :user, :name %>
   <%= f.label :rating %>
   <%= f.number_field(:rating, in: 1..5, step: 1) %>
-  <%= f.label :review %>
-  <%= f.text_field :review %>
+  <%= f.label :text, "Review" %>
+  <%= f.text_field :text %>
 
   <%= f.submit %>
 <% end %>
