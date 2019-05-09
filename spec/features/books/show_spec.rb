@@ -47,7 +47,7 @@ RSpec.describe "as a user" do
 
     it "it displays a list of reviews for a single book" do
       visit book_path(@book_1)
-save_and_open_page
+
       within(".reviews-list") do
         within("#review-#{@review_1.id}") do
           expect(page).to have_content(@review_1.title)
