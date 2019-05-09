@@ -1,0 +1,25 @@
+<h2>New Review</h2>
+
+<%= form_for [@book, @new_review] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= label :user, :name, "Username" %>
+  <%= text_field :user, :name %>
+  <div id="new-review-rating">
+    <p style="display: inline-block">Rating:</p>
+    <%= f.radio_button(:rating, 1) %>
+    <%= f.label :rating_1, "1"%>
+    <%= f.radio_button(:rating, 2) %>
+    <%= f.label :rating_2, "2" %>
+    <%= f.radio_button(:rating, 3) %>
+    <%= f.label :rating_3, "3" %>
+    <%= f.radio_button(:rating, 4) %>
+    <%= f.label :rating_4, "4" %>
+    <%= f.radio_button(:rating, 5) %>
+    <%= f.label :rating_5, "5" %>
+  </div>
+  <%= f.label :text, "Review" %>
+  <%= f.text_field :text %>
+
+  <%= f.submit %>
+<% end %>
