@@ -26,10 +26,13 @@ RSpec.describe "as a user" do
       visit book_path(@book_1)
 
       expect(page).to have_content(@book_1.title)
-      expect(page).to have_content("Author(s): #{@author_1.name}, #{@author_4.name}")
-      expect(page).to have_content("Pages: #{@book_1.pages}")
-      expect(page).to have_content("Published: #{@book_1.year}")
       expect(page).to have_css("img[src='#{@book_1.image}']")
+
+      within("#book-#{@book_1.id}-info") do
+        expect(page).to have_content("Author(s): #{@author_1.name}, #{@author_4.name}")
+        expect(page).to have_content("Pages: #{@book_1.pages}")
+        expect(page).to have_content("Published: #{@book_1.year}")
+      end
     end
 
     it "it does not display information about other books" do
@@ -40,6 +43,23 @@ RSpec.describe "as a user" do
       expect(page).to_not have_content("Pages: #{@book_2.pages}")
       expect(page).to_not have_content("Published: #{@book_2.year}")
       # expect(page).to_not have_css("img[src='#{@book_2.image}']")
+    end
+
+    it "it displays a list of reviews for a single book" do
+      visit book_path(@book_1)
+
+      within(".review-list") do
+        within("#review-#{@review_1.id}")
+          expect(page).to have_content("#{@review_1.rating} Stars")
+          expect(page).to have_content(@user_1.name)
+          expect(page).to have_content(@review_1.text)
+        end
+
+        within("#review-#{@review_2.id}") do
+          expect(page).to have_content("#{@review_2.rating} Stars")
+          expect(page).to have_content(@user_2.name)
+          expect(page).to have_content(@review_2.text)
+        end
     end
   end
 end
