@@ -1,0 +1,19 @@
+<h2>Add a Book to the Nook</h2>
+
+<section id="new-book-form">
+  <%= form_for @book do |f| %>
+    <%= f.label :title, "Title:" %>
+    <%= f.text_field :title %>
+    <%= f.label :pages, "Number of Pages:" %>
+    <%= f.text_field :pages %>
+    <%= f.label :year, "Year Published:" %>
+    <%= f.text_field :year %>
+    <%= f.label :authors, "Author(s):" %>
+    <%= f.text_field :authors %>
+    <%= f.label :image, "Image URL:" %>
+    <%= f.text_field :image %>
+    <%= f.submit "Add Book" %>
+  <% end %>
+</section>
+
+<%= link_to "<< Return to All Books", books_path %>

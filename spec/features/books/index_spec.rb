@@ -8,7 +8,7 @@ RSpec.describe "As a user", type: :feature do
 
       @author_1 = Author.create!(name: "Brennan Ayers")
       @author_2 = Author.create!(name: "John Flapjacks")
-      @author_3 = Author.create!(name: "Patrick Duvall, M.D.")
+      @author_3 = Author.create!(name: "Patrick Duvall")
       @author_4 = Author.create!(name: "Alexander Mathieu")
 
       @book_1 = @author_1.books.create!(title: "Veronica Mars", pages: 10, year: 2012)
@@ -68,6 +68,19 @@ RSpec.describe "As a user", type: :feature do
       within("#book-#{@book_3.id}") do
         expect(page).to have_content("Average Rating: 3.0 (1)")
       end
+    end
+
+    it "I see a link to create a new book" do
+      visit books_path
+
+      expect(page).to have_link("Add a New Book")
+    end
+
+    it "I'm able to navigate to a new book form" do
+      visit books_path
+      click_link "Add a New Book"
+
+      expect(current_path).to eq(new_book_path)
     end
 
     describe "I see sorting methods" do
