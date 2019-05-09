@@ -22,7 +22,7 @@ RSpec.describe "as a user" do
       fill_in "Title:", with: "A Treatise on Dressing Casually"
       fill_in "Number of Pages:", with: 800
       fill_in "Year Published:", with: 2019
-      fill_in "Author(s):", with: "Zachary Livingston"
+      fill_in "Author(s):", with: "Zachary Livingston, Jordie George"
 
       click_button "Add Book"
 
