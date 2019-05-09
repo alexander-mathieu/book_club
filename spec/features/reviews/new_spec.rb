@@ -13,7 +13,11 @@ RSpec.describe 'As a user', type: :feature do
 
       expect(page).to have_field("Title")
       expect(page).to have_field("Username")
-      expect(page).to have_field("Rating")
+      expect(page).to have_unchecked_field("review_rating_1")
+      expect(page).to have_unchecked_field("review_rating_2")
+      expect(page).to have_unchecked_field("review_rating_3")
+      expect(page).to have_unchecked_field("review_rating_4")
+      expect(page).to have_unchecked_field("review_rating_5")
       expect(page).to have_field("Review")
 
       expect(page).to have_button("Create Review")
@@ -21,11 +25,10 @@ RSpec.describe 'As a user', type: :feature do
 
     it 'I can create a new review' do
       visit new_book_review_path(@book)
-      save_and_open_page
 
       fill_in "Title", with: "Wow!"
       fill_in "Username", with: "Billy"
-      fill_in "Rating", with: "5"
+      choose "5"
       fill_in "Title", with: "What a book!"
 
       click_button "Create Review"
