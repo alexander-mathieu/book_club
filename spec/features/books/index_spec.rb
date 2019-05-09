@@ -70,6 +70,19 @@ RSpec.describe "As a user", type: :feature do
       end
     end
 
+    it "I see a link to create a new book" do
+      visit books_path
+
+      expect(page).to have_link("Add a New Book")
+    end
+
+    it "I'm able to navigate to a new book form" do
+      visit books_path
+      click_link "Add a New Book"
+
+      expect(current_path).to eq(new_book_path)
+    end
+
     describe "I see sorting methods" do
       it "to sort by average rating" do
         visit books_path
