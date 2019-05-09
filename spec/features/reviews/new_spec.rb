@@ -138,5 +138,37 @@ RSpec.describe 'As a user', type: :feature do
       #   end
       # end
     end
+
+    xit 'I cannot create a new review on a book that user has already reviewed' do
+      @book.reviews.create(title: "No!", rating: 1, text: "Terrible book!", user_id: @user.id)
+      visit new_book_review_path(@book)
+
+      title = "Wow!"
+      username = "Billy"
+      rating = "5"
+      text = "What a book!"
+
+      fill_in "Title", with: title
+      fill_in "Username", with: username
+      choose rating
+      fill_in "Review", with: text
+
+      click_button "Create Review"
+
+      # Error?
+
+      # new_review = Review.last
+      #
+      # expect(current_path).to eq(books_path(@book))
+
+      # within(".reviews-list") do
+      #   within("#review-#{new_review.id}") do
+      #     expect(page).to have_content(title)
+      #     expect(page).to have_content(username.titlecase)
+      #     expect(page).to have_content(rating)
+      #     expect(page).to have_content(text)
+      #   end
+      # end
+    end
   end
 end
