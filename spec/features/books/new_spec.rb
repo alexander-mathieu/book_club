@@ -6,16 +6,11 @@ RSpec.describe "as a user" do
       visit new_book_path
 
       within("#new-book-form") do
-        expect(page).to have_content("Book Title:")
-        # expect(page).to have_field()
-        expect(page).to have_content("Number of Pages:")
-        # expect(page).to have_field()
-        expect(page).to have_content("Year Published:")
-        # expect(page).to have_field()
-        expect(page).to have_content("Book Author(s):")
-        # expect(page).to have_field()
-        expect(page).to have_content("Image:")
-        # expect(page).to have_field()
+        expect(page).to have_field("Title:")
+        expect(page).to have_field("Number of Pages:")
+        expect(page).to have_field("Year Published:")
+        expect(page).to have_field("Author(s):")
+        expect(page).to have_field("Image URL:")
       end
     end
   end
