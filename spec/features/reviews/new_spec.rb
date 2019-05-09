@@ -16,7 +16,7 @@ RSpec.describe 'As a user', type: :feature do
       expect(page).to have_field("Rating")
       expect(page).to have_field("Review")
 
-      expect(page).to have_button("New Review")
+      expect(page).to have_button("Create Review")
     end
 
 
