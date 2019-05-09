@@ -1,6 +1,6 @@
 <h2>New Review</h2>
 
-<%= form_for @new_review, url: {action: :new} do |f| %>
+<%= form_for [@book, @new_review] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= label :user, :name, "Username" %>
