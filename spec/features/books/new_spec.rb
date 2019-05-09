@@ -30,5 +30,19 @@ RSpec.describe "as a user" do
 
       expect(current_path).to eq(book_path(book))
     end
+
+    it "I see a link to navigate back to book index" do
+      visit new_book_path
+
+      expect(page).to have_content("<< Return to All Books")
+    end
+
+    it "and click '<< Return to All Books', I'm taken back to the book index" do
+      visit new_book_path
+
+      click_link "<< Return to All Books"
+
+      expect(current_path).to eq(books_path)
+    end
   end
 end
