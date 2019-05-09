@@ -23,7 +23,7 @@ RSpec.describe "As a user", type: :feature do
     end
 
     it "I see all book titles in the database" do
-      visit '/books'
+      visit books_path
 
       within("#book-#{@book_1.id}") do
         expect(page).to have_css("img[src='#{@book_1.image}']")
@@ -46,7 +46,7 @@ RSpec.describe "As a user", type: :feature do
 
       within("#book-#{@book_3.id}") do
         expect(page).to have_css("img[src='#{@book_3.image}']")
-        
+
         expect(page).to have_content(@book_3.title)
         expect(page).to have_content(@book_3.authors[0].name)
         expect(page).to have_content(@book_3.pages)
@@ -55,7 +55,7 @@ RSpec.describe "As a user", type: :feature do
     end
 
     it "I see an average review rating and amount of reviews on each book" do
-      visit '/books'
+      visit books_path
 
       within("#book-#{@book_1.id}") do
         expect(page).to have_content("Average Rating: 4.0 (2)")
@@ -72,7 +72,7 @@ RSpec.describe "As a user", type: :feature do
 
     describe "I see sorting methods" do
       it "to sort by average rating" do
-        visit '/books'
+        visit books_path
 
         click_link 'Sort by: Lowest Rating'
 
@@ -86,7 +86,7 @@ RSpec.describe "As a user", type: :feature do
       end
 
       it "to sorts by number of pages" do
-        visit '/books'
+        visit books_path
 
         click_link 'Sort by: Most Pages'
 
@@ -102,7 +102,7 @@ RSpec.describe "As a user", type: :feature do
       it "to sorts by number of reviews" do
         review_5 = @book_2.reviews.create!(text: "THIS BOOK IS!", rating: 5, user: @user_1)
         review_6 = @book_1.reviews.create!(text: "BOOK!", rating: 5, user: @user_2)
-        visit '/books'
+        visit books_path
 
         click_link 'Sort by: Most Reviews'
 
