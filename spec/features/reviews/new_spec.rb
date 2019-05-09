@@ -26,10 +26,15 @@ RSpec.describe 'As a user', type: :feature do
     it 'I can create a new review' do
       visit new_book_review_path(@book)
 
-      fill_in "Title", with: "Wow!"
-      fill_in "Username", with: "Billy"
-      choose "5"
-      fill_in "Review", with: "What a book!"
+      title = "Wow!"
+      username = "Billy"
+      rating = "5"
+      text = "What a book!"
+
+      fill_in "Title", with: title
+      fill_in "Username", with: username
+      choose rating
+      fill_in "Review", with: text
 
       click_button "Create Review"
 
@@ -39,10 +44,10 @@ RSpec.describe 'As a user', type: :feature do
 
       # within(".reviews-list") do
       #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(new_review.title)
-      #     expect(page).to have_content(new_review.user.name)
-      #     expect(page).to have_content(new_review.rating)
-      #     expect(page).to have_content(new_review.text)
+      #     expect(page).to have_content(title)
+      #     expect(page).to have_content(username.titlecase)
+      #     expect(page).to have_content(rating)
+      #     expect(page).to have_content(text)
       #   end
       # end
     end
@@ -50,10 +55,15 @@ RSpec.describe 'As a user', type: :feature do
     it 'I can create a new review with a new user' do
       visit new_book_review_path(@book)
 
-      fill_in "Title", with: "Wow!"
-      fill_in "Username", with: "Bilbo"
-      choose "5"
-      fill_in "Review", with: "What a book!"
+      title = "Wow!"
+      username = "Bilbo"
+      rating = "5"
+      text = "What a book!"
+
+      fill_in "Title", with: title
+      fill_in "Username", with: username
+      choose rating
+      fill_in "Review", with: text
 
       click_button "Create Review"
 
@@ -63,10 +73,10 @@ RSpec.describe 'As a user', type: :feature do
 
       # within(".reviews-list") do
       #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(new_review.title)
-      #     expect(page).to have_content(new_review.user.name)
-      #     expect(page).to have_content(new_review.rating)
-      #     expect(page).to have_content(new_review.text)
+      #     expect(page).to have_content(title)
+      #     expect(page).to have_content(username.titlecase)
+      #     expect(page).to have_content(rating)
+      #     expect(page).to have_content(text)
       #   end
       # end
     end
@@ -74,10 +84,15 @@ RSpec.describe 'As a user', type: :feature do
     it 'I can create a new review with a non-titlecase user' do
       visit new_book_review_path(@book)
 
-      fill_in "Title", with: "Wow!"
-      fill_in "Username", with: "billy"
-      choose "5"
-      fill_in "Review", with: "What a book!"
+      title = "Wow!"
+      username = "billy"
+      rating = "5"
+      text = "What a book!"
+
+      fill_in "Title", with: title
+      fill_in "Username", with: username
+      choose rating
+      fill_in "Review", with: text
 
       click_button "Create Review"
 
@@ -87,10 +102,10 @@ RSpec.describe 'As a user', type: :feature do
 
       # within(".reviews-list") do
       #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(new_review.title)
-      #     expect(page).to have_content(new_review.user.name)
-      #     expect(page).to have_content(new_review.rating)
-      #     expect(page).to have_content(new_review.text)
+      #     expect(page).to have_content(title)
+      #     expect(page).to have_content(username.titlecase)
+      #     expect(page).to have_content(rating)
+      #     expect(page).to have_content(text)
       #   end
       # end
     end
@@ -98,10 +113,15 @@ RSpec.describe 'As a user', type: :feature do
     it 'I can create a new review with a non-titlecase new user' do
       visit new_book_review_path(@book)
 
-      fill_in "Title", with: "Wow!"
-      fill_in "Username", with: "bilbo"
-      choose "5"
-      fill_in "Review", with: "What a book!"
+      title = "Wow!"
+      username = "bilbo"
+      rating = "5"
+      text = "What a book!"
+
+      fill_in "Title", with: title
+      fill_in "Username", with: username
+      choose rating
+      fill_in "Review", with: text
 
       click_button "Create Review"
 
@@ -111,10 +131,10 @@ RSpec.describe 'As a user', type: :feature do
 
       # within(".reviews-list") do
       #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(new_review.title)
-      #     expect(page).to have_content(new_review.user.name)
-      #     expect(page).to have_content(new_review.rating)
-      #     expect(page).to have_content(new_review.text)
+      #     expect(page).to have_content(title)
+      #     expect(page).to have_content(username.titlecase)
+      #     expect(page).to have_content(rating)
+      #     expect(page).to have_content(text)
       #   end
       # end
     end
