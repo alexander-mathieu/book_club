@@ -3,6 +3,8 @@ class Book < ApplicationRecord
   has_many :books_by_author
   has_many :authors, through: :books_by_author
 
+  before_validation :titlecase_title
+
   validates :title, :pages, :year, presence: true
   validates :title, uniqueness: true
 
@@ -50,6 +52,12 @@ class Book < ApplicationRecord
       .group('books.id')
       .order('review_count')
     end
+  end
+
+  private
+
+  def titlecase_title
+    write_attribute(:title, self.title.titlecase)
   end
 
 end
