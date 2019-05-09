@@ -8,7 +8,7 @@ RSpec.describe "As a user", type: :feature do
 
       @author_1 = Author.create!(name: "Brennan Ayers")
       @author_2 = Author.create!(name: "John Flapjacks")
-      @author_3 = Author.create!(name: "Patrick Duvall, M.D.")
+      @author_3 = Author.create!(name: "Patrick Duvall")
       @author_4 = Author.create!(name: "Alexander Mathieu")
 
       @book_1 = @author_1.books.create!(title: "Veronica Mars", pages: 10, year: 2012)
