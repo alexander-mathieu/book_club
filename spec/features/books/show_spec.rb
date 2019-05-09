@@ -16,10 +16,10 @@ RSpec.describe "as a user" do
       @book_3 = @author_3.books.create!(title: "Trip to Mars", pages: 480, year: 2020)
       @book_1.authors << @author_4
 
-      @review_1 = @book_1.reviews.create!(text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
-      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 3, user: @user_2)
-      @review_3 = @book_2.reviews.create!(text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
-      @review_4 = @book_3.reviews.create!(text: "This book went to the market!", rating: 3, user: @user_2)
+      @review_1 = @book_1.reviews.create!(title: "WOW", text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
+      @review_2 = @book_1.reviews.create!(title: "Meh", text: "This book didn't do it for me.", rating: 3, user: @user_2)
+      @review_3 = @book_2.reviews.create!(title: "A Bit Disappointed", text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
+      @review_4 = @book_3.reviews.create!(title: "This Little Book Stayed Home", text: "This book went to the market!", rating: 3, user: @user_2)
     end
 
     it "it displays information about a single book" do
@@ -47,19 +47,20 @@ RSpec.describe "as a user" do
 
     it "it displays a list of reviews for a single book" do
       visit book_path(@book_1)
-
-      within(".review-list") do
-        within("#review-#{@review_1.id}")
-          expect(page).to have_content("#{@review_1.rating} Stars")
-          expect(page).to have_content(@user_1.name)
+save_and_open_page
+      within(".reviews-list") do
+        within("#review-#{@review_1.id}") do
+          expect(page).to have_content(@review_1.title)
+          expect(page).to have_content("#{@user_1.name}, #{@review_1.rating} Stars")
           expect(page).to have_content(@review_1.text)
         end
 
         within("#review-#{@review_2.id}") do
-          expect(page).to have_content("#{@review_2.rating} Stars")
-          expect(page).to have_content(@user_2.name)
+          expect(page).to have_content(@review_2.title)
+          expect(page).to have_content("#{@user_2.name}, #{@review_2.rating} Stars")
           expect(page).to have_content(@review_2.text)
         end
+      end
     end
   end
 end
