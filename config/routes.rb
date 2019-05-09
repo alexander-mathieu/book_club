@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  get '/books', to: 'books#index'
+
+  resources :books do
+    resources :reviews, except: [:index, :show, :edit, :update]
+  end
+
+  resources :authors
+
+  resources :users, only: [:show, :create]
 end
