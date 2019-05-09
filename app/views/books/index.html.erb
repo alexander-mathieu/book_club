@@ -1,5 +1,12 @@
 <h2>Welcome to the Book Nook!</h2>
 
+<a href="/books?ratings=high" id="rating-high">Sort by: Highest Rating</a>
+<a href="/books?ratings=low" id="rating-low">Sort by: Lowest Rating</a>
+<a href="/books?pages=high" id="pages-high">Sort by: Most Pages</a>
+<a href="/books?pages=low" id="pages-low">Sort by: Least Pages</a>
+<a href="/books?reviews=high" id="reviews-high">Sort by: Most Reviews</a>
+<a href="/books?reviews=low" id="reviews-low">Sort by: Least Reviews</a>
+
 <% @books.each do |book| %>
   <section class="book" id="book-<%= book.id %>">
     <img src="<%= book.image %>" alt="<%= book.title %> Cover">
