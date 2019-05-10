@@ -1,0 +1,11 @@
+<h2><%= @user.name %></h2>
+
+<section class="user-reviews">
+  <% @reviews.each do |review| %>
+    <div class="user-review" id="<%= review.title %>-review">
+      <h5><%= review.title %></h5>
+      <p><%= review.rating %></p>
+      <p><%= review.text %></p>
+    </div>
+  <% end %>
+</section>
