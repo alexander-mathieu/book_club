@@ -70,12 +70,28 @@ RSpec.describe "as a user" do
     end
 
     describe "and click the 'Delete Book' link" do
-      it "it displays a confirmation message" do
+      it "it displays a confirmation message that the book has been deleted" do
         visit book_path(@book_1)
 
         click_link "Delete Book"
 
-        expect(page).to have_content("Are you sure you want to delete the book?")
+        expect(page).to have_content("'#{@book_1.title}' was deleted.")
+      end
+
+      it "it redirects me to /books" do
+        visit book_path(@book_1)
+
+        click_link "Delete Book"
+
+        expect(current_path).to eq(books_path)
+      end
+
+      it "I do not see the deleted book on the /books" do
+        visit book_path(@book_1)
+
+        click_link "Delete Book"
+
+        expect(page).to_not have_css("#book-#{@book_1.id}")
       end
     end
   end
