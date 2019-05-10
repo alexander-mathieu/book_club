@@ -68,8 +68,13 @@ RSpec.describe 'As a user', type: :feature do
     it 'I should be able to sort user reviews by newest and oldest' do
       user = User.create!(name: "VinnyCheese")
 
+      travel_to Time.zone.local(2019, 05, 10, 18, 00, 00)
       review_1 = @book_1.reviews.create!(title: "Wow!", text: "THIS BOOK IS AWESOME!", rating: 5, user: user)
+
+      travel_to Time.zone.local(2019, 05, 10, 10, 00, 00)
       review_2 = @book_2.reviews.create!(title: "Disappointing...", text: "This book seemed like it was more about drones than Mars.", rating: 2, user: user)
+
+      travel_to Time.zone.local(2019, 05, 11, 18, 00, 00)
       review_3 = @book_3.reviews.create!(title: "All the way home!", text: "This book went to the market!", rating: 3, user: user)
 
       visit user_path(user)
