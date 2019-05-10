@@ -16,6 +16,10 @@ RSpec.describe Book, type: :model do
     before(:each) do
       @user_1 = User.create!(name: "Anony-moose")
       @user_2 = User.create!(name: "VinnyCheese")
+      @user_3 = User.create!(name: "LogyBear")
+      @user_4 = User.create!(name: "MILLS")
+      @user_5 = User.create!(name: "DocPat")
+      @user_6 = User.create!(name: "BilhamTheConqueror")
 
       @author_1 = Author.create!(name: "Jim")
       @author_2 = Author.create!(name: "Bob")
@@ -25,23 +29,35 @@ RSpec.describe Book, type: :model do
       @book_1.authors << @author_2
 
       @review_1 = @book_1.reviews.create!(text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
-      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 3, user: @user_2)
+      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 1, user: @user_2)
       @review_3 = @book_2.reviews.create!(text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
+      @review_4 = @book_1.reviews.create!(title: "Not Very Good", text: "I expected more from this author.", rating: 2, user: @user_3)
+      @review_5 = @book_1.reviews.create!(title: "Don't Know What to Say", text: "Pretty alright.", rating: 4, user: @user_4)
+      @review_6 = @book_1.reviews.create!(title: "Speechless", text: "This book totally blew me away.", rating: 5, user: @user_5)
+      @review_7 = @book_1.reviews.create!(title: "This Book Blows", text: "This book should get blown away.", rating: 1, user: @user_6)
     end
 
-    it ".author_names" do
+    it "#author_names" do
       expect(@book_1.author_names).to eq(["Jim", "Bob"])
       expect(@book_2.author_names).to eq(["Bob"])
     end
 
-    it ".average_rating" do
-      expect(@book_1.average_rating).to eq(4.0)
+    it "#average_rating" do
+      expect(@book_1.average_rating).to eq(3.0)
       expect(@book_2.average_rating).to eq(2.0)
     end
 
-    it ".review_count" do
-      expect(@book_1.review_count).to eq(2)
+    it "#review_count" do
+      expect(@book_1.review_count).to eq(6)
       expect(@book_2.review_count).to eq(1)
+    end
+
+    it "#highest_three_reviews" do
+      expect(@book_1.highest_three_reviews).to eq([@review_1, @review_6, @review_5])
+    end
+
+    it "#lowest_three_reviews" do
+      expect(@book_1.lowest_three_reviews).to eq([@review_2, @review_7, @review_4])
     end
   end
 
