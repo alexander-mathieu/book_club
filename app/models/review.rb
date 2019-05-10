@@ -10,9 +10,9 @@ class Review < ApplicationRecord
 
   def self.sort_by_date(sort)
     if sort == "newest"
-      order(created_at: :asc)
-    else
       order(created_at: :desc)
+    else
+      order(created_at: :asc)
     end
   end
 end
