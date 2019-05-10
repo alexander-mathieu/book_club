@@ -57,7 +57,7 @@ class Book < ApplicationRecord
   private
 
   def titlecase_title
-    write_attribute(:title, self.title.titlecase)
+    write_attribute(:title, self.title.titlecase) unless self.title == nil
   end
 
 end
