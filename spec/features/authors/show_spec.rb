@@ -38,5 +38,21 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content("Published: #{@book_3.year}")
       end
     end
+
+    it 'I should only see other authors listed under books' do
+      visit author_path(@flapjacks)
+
+      within("#book-#{@book_1.id}-info") do
+        expect(page).to have_content("Co-authors: Vincenzo 'Big' Cheese")
+      end
+
+      within("#book-#{@book_2.id}-info") do
+        expect(page).to_not have_content("Co-authors:")
+      end
+
+      within("#book-#{@book_3.id}-info") do
+        expect(page).to_not have_content("Co-authors:")
+      end
+    end
   end
 end
