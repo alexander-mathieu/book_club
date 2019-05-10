@@ -3,6 +3,9 @@
 <section class="user-reviews">
   <% @reviews.each do |review| %>
     <div class="user-review" id="review-<%= review.id %>">
+      <img src="<%= review.book.image %>" alt="<%= review.book.title %> Cover">
+      <h4>Book: <%= review.book.title %></h4>
+      <p>Posted on: <%= review.date %></p>
       <h5><%= review.title %></h5>
       <p>Rating: <%= review.rating %></p>
       <p>Review: <%= review.text %></p>
