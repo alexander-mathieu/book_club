@@ -2,7 +2,8 @@
 
 <% @books.each do |book| %>
   <section id="book-<%= book.id %>-info">
-    <img src="<%= @book.image %>" alt="<%= book.title %>"/>
+    <img src="<%= book.image %>" alt="<%= book.title %>"/>
+    <h5><%= book.title %></h5>
     <p>Pages: <%= book.pages %></p>
     <p>Published: <%= book.year %></p>
 
