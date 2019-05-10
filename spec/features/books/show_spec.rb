@@ -24,10 +24,10 @@ RSpec.describe "as a user" do
       @review_2 = @book_1.reviews.create!(title: "Meh", text: "This book didn't do it for me.", rating: 3, user: @user_2)
       @review_3 = @book_2.reviews.create!(title: "A Bit Disappointed", text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
       @review_4 = @book_3.reviews.create!(title: "This Little Book Stayed Home", text: "This book went to the market!", rating: 3, user: @user_2)
-      @review_5 = @book_1.reviews.create!(title: "Not Very Good", text: "I expected more from this author.", rating: 2, user: @user_3,)
-      @review_6 = @book_1.reviews.create!(title: "Don't Know What to Say", text: "Pretty alright.", rating: 4, user: @user_4,)
-      @review_7 = @book_1.reviews.create!(title: "Speechless", text: "This book totally blew me away.", rating: 5, user: @user_5,)
-      @review_8 = @book_1.reviews.create!(title: "This Book Blows", text: "This book should get blown away.", rating: 1, user: @user_6,)
+      @review_5 = @book_1.reviews.create!(title: "Not Very Good", text: "I expected more from this author.", rating: 2, user: @user_3)
+      @review_6 = @book_1.reviews.create!(title: "Don't Know What to Say", text: "Pretty alright.", rating: 4, user: @user_4)
+      @review_7 = @book_1.reviews.create!(title: "Speechless", text: "This book totally blew me away.", rating: 5, user: @user_5)
+      @review_8 = @book_1.reviews.create!(title: "This Book Blows", text: "This book should get blown away.", rating: 1, user: @user_6)
     end
 
     it "it displays information about a single book" do
