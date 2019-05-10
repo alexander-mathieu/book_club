@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
-  has_many :reviews
-  has_many :books_by_author
+  has_many :reviews, dependent: :destroy
+  has_many :books_by_author, dependent: :destroy
   has_many :authors, through: :books_by_author
 
   before_validation :titlecase_title
