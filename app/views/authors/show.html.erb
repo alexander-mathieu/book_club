@@ -1,0 +1,10 @@
+<h2><%= @author.name %></h2>
+
+<% @books.each do |book| %>
+  <section id="book-<%= book.id %>-info">
+    <img src="<%= @book.image %>" alt="<%= book.title %>"/>
+    <p>Pages: <%= book.pages %></p>
+    <p>Published: <%= book.year %></p>
+
+  </section>
+<% end %>
