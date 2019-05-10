@@ -51,5 +51,18 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content("Posted on: #{@review_3.date}")
       end
     end
+
+    it 'I should see no reviews for users with no reviews' do
+      user = User.create!(name: "VinnyCheese")
+
+      visit user_path(user)
+
+      expect(page).to have_content("#{user.name}")
+
+      expect(page).to have_no_content("Rating:")
+      expect(page).to have_no_content("Review:")
+      expect(page).to have_no_content("Book:")
+      expect(page).to have_no_content("Posted on:")
+    end
   end
 end
