@@ -12,6 +12,7 @@
       <h5><%= review.title %></h5>
       <p>Rating: <%= review.rating %></p>
       <p>Review: <%= review.text %></p>
+      <%= link_to "Delete Review", book_review_path(review), method: :delete, data: {confirm: "Are you sure you want to delete the review?"} %>
     </div>
   <% end %>
 </section>
