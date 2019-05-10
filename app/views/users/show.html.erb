@@ -1,5 +1,8 @@
 <h2><%= @user.name %></h2>
 
+<a href="<%= user_path(@user, sort: "newest") %>">Sort by: Newest</a>
+<a href="<%= user_path(@user, sort: "oldest") %>">Sort by: Oldest</a>
+
 <section class="user-reviews">
   <% @reviews.each do |review| %>
     <div class="user-review" id="review-<%= review.id %>">
