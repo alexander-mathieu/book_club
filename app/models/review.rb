@@ -7,4 +7,12 @@ class Review < ApplicationRecord
   def date
     created_at.strftime("%d %B %Y")
   end
+
+  def self.sort_by_date(sort)
+    if sort == "newest"
+      order(created_at: :asc)
+    else
+      order(created_at: :desc)
+    end
+  end
 end

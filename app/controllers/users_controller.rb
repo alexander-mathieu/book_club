@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if params[:sort].nil?
       @reviews = @user.reviews
     else
-      @reviews = @user.reviews.sort_by(params[:sort])
+      @reviews = @user.reviews.sort_by_date(params[:sort])
     end
   end
 end
