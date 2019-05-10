@@ -64,5 +64,26 @@ RSpec.describe 'As a user', type: :feature do
       expect(page).to have_no_content("Book:")
       expect(page).to have_no_content("Posted on:")
     end
+
+    it 'I should be able to sort user reviews by newest and oldest' do
+      user = User.create!(name: "VinnyCheese")
+
+      review_1 = @book_1.reviews.create!(title: "Wow!", text: "THIS BOOK IS AWESOME!", rating: 5, user: user)
+      review_2 = @book_2.reviews.create!(title: "Disappointing...", text: "This book seemed like it was more about drones than Mars.", rating: 2, user: user)
+      review_3 = @book_3.reviews.create!(title: "All the way home!", text: "This book went to the market!", rating: 3, user: user)
+
+      visit user_path(user)
+
+      expect(page).to have_link("Sort by: Newest")
+      expect(page).to have_link("Sort by: Oldest")
+
+      click_link("Sort by: Newest")
+      expect(review_2.title).to appear_before(review_1.title)
+      expect(review_1.title).to appear_before(review_3.title)
+
+      click_link("Sort by: Oldest")
+      expect(review_3.title).to appear_before(review_1.title)
+      expect(review_1.title).to appear_before(review_2.title)
+    end
   end
 end
