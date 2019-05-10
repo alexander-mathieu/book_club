@@ -83,12 +83,12 @@ RSpec.describe 'As a user', type: :feature do
       expect(page).to have_link("Sort by: Oldest")
 
       click_link("Sort by: Newest")
-      expect(review_2.title).to appear_before(review_1.title)
-      expect(review_1.title).to appear_before(review_3.title)
-
-      click_link("Sort by: Oldest")
       expect(review_3.title).to appear_before(review_1.title)
       expect(review_1.title).to appear_before(review_2.title)
+
+      click_link("Sort by: Oldest")
+      expect(review_2.title).to appear_before(review_1.title)
+      expect(review_1.title).to appear_before(review_3.title)
     end
   end
 end
