@@ -41,9 +41,7 @@ class BooksController < ApplicationController
   end
 
   def add_authors(book)
-    create_authors.each do |author|
-      book.authors << author
-    end
+    book.authors << create_authors
   end
 
   def create_authors
