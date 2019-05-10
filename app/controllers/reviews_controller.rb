@@ -14,6 +14,14 @@ class ReviewsController < ApplicationController
     redirect_to books_path(book)
   end
 
+  def destroy
+    # This is very confusing, but our Review ID is passed into params as :book_id because Reviews are nested resources of Book
+    deleted_review = Review.find(params[:book_id])
+    deleted_review.destroy
+
+    redirect_to user_path(params[:id])
+  end
+
   private
 
   def review_params
