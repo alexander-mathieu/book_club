@@ -54,6 +54,32 @@ RSpec.describe "As a user", type: :feature do
       end
     end
 
+    it "I see that each book title is a link" do
+      visit books_path
+
+      within("#book-#{@book_1.id}") do
+        expect(page).to have_link(@book_1.title)
+      end
+
+      within("#book-#{@book_2.id}") do
+        expect(page).to have_link(@book_2.title)
+      end
+
+      within("#book-#{@book_3.id}") do
+        expect(page).to have_link(@book_3.title)
+      end
+    end
+
+    it "I'm able to navigate to a book's show page by clicking the title" do
+      visit books_path
+
+      within("#book-#{@book_1.id}") do
+        click_link @book_1.title
+      end
+
+      expect(current_path).to eq(book_path(@book_1))
+    end
+
     it "I see an average review rating and amount of reviews on each book" do
       visit books_path
 
