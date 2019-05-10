@@ -56,7 +56,7 @@ RSpec.describe "as a user" do
     it "it displays a list of reviews for a single book" do
       visit book_path(@book_1)
 
-      within(".reviews-list") do
+      within(".all-reviews") do
         within("#review-#{@review_1.id}") do
           expect(page).to have_content(@review_1.title)
           expect(page).to have_content("#{@user_1.name}, #{@review_1.rating} Stars")
@@ -103,7 +103,7 @@ RSpec.describe "as a user" do
 
     it "it displays the top and bottom three reviews for the book" do
       visit book_path(@book_1)
-      
+
       within "#review-stats" do
         within "#highest-reviews" do
           expect(page).to have_content(@review_1.title)
