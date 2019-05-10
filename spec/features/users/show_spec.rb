@@ -17,23 +17,23 @@ RSpec.describe 'As a user', type: :feature do
     end
 
     it 'I should see all that users reviews' do
-      visit users_path(@user)
+      visit user_path(@user)
 
       expect(page).to have_content("#{@user.name}")
 
-      within("##{@review_1.title}-review") do
+      within("#review-#{@review_1.id}") do
         expect(page).to have_content("#{@review_1.title}")
         expect(page).to have_content("#{@review_1.rating}")
         expect(page).to have_content("#{@review_1.text}")
       end
 
-      within("##{@review_2.title}-review") do
+      within("#review-#{@review_2.id}") do
         expect(page).to have_content("#{@review_2.title}")
         expect(page).to have_content("#{@review_2.rating}")
         expect(page).to have_content("#{@review_2.text}")
       end
 
-      within("##{@review_3.title}-review") do
+      within("#review-#{@review_3.id}") do
         expect(page).to have_content("#{@review_3.title}")
         expect(page).to have_content("#{@review_3.rating}")
         expect(page).to have_content("#{@review_3.text}")
