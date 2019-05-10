@@ -18,3 +18,5 @@
     </div>
     <% end %>
 </section>
+
+<%= link_to "Delete Book", book_path(@book), method: :delete, data: {confirm: "Are you sure you want to delete the book?"} %>
