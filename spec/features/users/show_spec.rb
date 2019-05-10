@@ -25,18 +25,30 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content("#{@review_1.title}")
         expect(page).to have_content("Rating: #{@review_1.rating}")
         expect(page).to have_content("Review: #{@review_1.text}")
+
+        expect(page).to have_content("Book: #{@book_1.title}")
+        expect(page).to have_content(@book_1.image)
+        expect(page).to have_content("Posted on: #{@review_1.date}")
       end
 
       within("#review-#{@review_2.id}") do
         expect(page).to have_content("#{@review_2.title}")
         expect(page).to have_content("Rating: #{@review_2.rating}")
         expect(page).to have_content("Review: #{@review_2.text}")
+
+        expect(page).to have_content("Book: #{@book_2.title}")
+        expect(page).to have_content(@book_2.image)
+        expect(page).to have_content("Posted on: #{@review_2.date}")
       end
 
       within("#review-#{@review_3.id}") do
         expect(page).to have_content("#{@review_3.title}")
         expect(page).to have_content("Rating: #{@review_3.rating}")
         expect(page).to have_content("Review: #{@review_3.text}")
+
+        expect(page).to have_content("Book: #{@book_3.title}")
+        expect(page).to have_content(@book_3.image)
+        expect(page).to have_content("Posted on: #{@review_3.date}")
       end
     end
   end
