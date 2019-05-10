@@ -21,22 +21,22 @@ RSpec.describe 'As a user', type: :feature do
     within("#book-#{@book_1.id}-info") do
       expect(page).to have_css("src=#{@book_1.image}")
       expect(page).to have_content(@book_1.title)
-      expect(page).to have_content(@book_1.pages)
-      expect(page).to have_content(@book_1.year)
+      expect(page).to have_content("Pages: #{@book_1.pages}")
+      expect(page).to have_content("Published: #{@book_1.year}")
     end
 
     within("#book-#{@book_2.id}-info") do
       expect(page).to have_css("src=#{@book_2.image}")
       expect(page).to have_content(@book_2.title)
-      expect(page).to have_content(@book_2.pages)
-      expect(page).to have_content(@book_2.year)
+      expect(page).to have_content("Pages: #{@book_2.pages}")
+      expect(page).to have_content("Published: #{@book_2.year}")
     end
 
     within("#book-#{@book_3.id}-info") do
       expect(page).to have_css("src=#{@book_3.image}")
       expect(page).to have_content(@book_3.title)
-      expect(page).to have_content(@book_3.pages)
-      expect(page).to have_content(@book_3.year)
+      expect(page).to have_content("Pages: #{@book_3.pages}")
+      expect(page).to have_content("Published: #{@book_3.year}")
     end
   end
 end
