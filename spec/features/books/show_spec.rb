@@ -5,6 +5,10 @@ RSpec.describe "as a user" do
     before :each do
       @user_1 = User.create!(name: "Anony-moose")
       @user_2 = User.create!(name: "VinnyCheese")
+      @user_3 = User.create!(name: "LogyBear")
+      @user_4 = User.create!(name: "MILLS")
+      @user_5 = User.create!(name: "DocPat")
+      @user_6 = User.create!(name: "BilhamTheConqueror")
 
       @author_1 = Author.create!(name: "Brennan Ayers")
       @author_2 = Author.create!(name: "John Flapjacks")
@@ -20,6 +24,10 @@ RSpec.describe "as a user" do
       @review_2 = @book_1.reviews.create!(title: "Meh", text: "This book didn't do it for me.", rating: 3, user: @user_2)
       @review_3 = @book_2.reviews.create!(title: "A Bit Disappointed", text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
       @review_4 = @book_3.reviews.create!(title: "This Little Book Stayed Home", text: "This book went to the market!", rating: 3, user: @user_2)
+      @review_5 = @book_1.reviews.create!(title: "Not Very Good", text: "I expected more from this author.", rating: 2, user: @user_3,)
+      @review_6 = @book_1.reviews.create!(title: "Don't Know What to Say", text: "Pretty alright.", rating: 4, user: @user_4,)
+      @review_7 = @book_1.reviews.create!(title: "Speechless", text: "This book totally blew me away.", rating: 5, user: @user_5,)
+      @review_8 = @book_1.reviews.create!(title: "This Book Blows", text: "This book should get blown away.", rating: 1, user: @user_6,)
     end
 
     it "it displays information about a single book" do
@@ -60,6 +68,30 @@ RSpec.describe "as a user" do
           expect(page).to have_content("#{@user_2.name}, #{@review_2.rating} Stars")
           expect(page).to have_content(@review_2.text)
         end
+
+        within("#review-#{@review_5.id}") do
+          expect(page).to have_content(@review_5.title)
+          expect(page).to have_content("#{@user_3.name}, #{@review_5.rating} Stars")
+          expect(page).to have_content(@review_5.text)
+        end
+
+        within("#review-#{@review_6.id}") do
+          expect(page).to have_content(@review_6.title)
+          expect(page).to have_content("#{@user_4.name}, #{@review_6.rating} Stars")
+          expect(page).to have_content(@review_6.text)
+        end
+
+        within("#review-#{@review_7.id}") do
+          expect(page).to have_content(@review_7.title)
+          expect(page).to have_content("#{@user_5.name}, #{@review_7.rating} Stars")
+          expect(page).to have_content(@review_7.text)
+        end
+
+        within("#review-#{@review_8.id}") do
+          expect(page).to have_content(@review_8.title)
+          expect(page).to have_content("#{@user_6.name}, #{@review_8.rating} Stars")
+          expect(page).to have_content(@review_8.text)
+        end
       end
     end
 
@@ -67,6 +99,40 @@ RSpec.describe "as a user" do
       visit book_path(@book_1)
 
       expect(page).to have_link("Delete Book")
+    end
+
+    it "it displays the top and bottom three reviews for the book" do
+      visit book_path(@book_1)
+      
+      within "#review-stats" do
+        within "#highest-reviews" do
+          expect(page).to have_content(@review_1.title)
+          expect(page).to have_content(@review_1.rating)
+          expect(page).to have_link(@review_1.user.name)
+
+          expect(page).to have_content(@review_7.title)
+          expect(page).to have_content(@review_7.rating)
+          expect(page).to have_link(@review_7.user.name)
+
+          expect(page).to have_content(@review_6.title)
+          expect(page).to have_content(@review_6.rating)
+          expect(page).to have_link(@review_6.user.name)
+        end
+
+        within "lowest-reviews" do
+          expect(page).to have_content(@review_2.title)
+          expect(page).to have_content(@review_2.rating)
+          expect(page).to have_link(@review_2.user.name)
+
+          expect(page).to have_content(@review_5.title)
+          expect(page).to have_content(@review_5.rating)
+          expect(page).to have_link(@review_5.user.name)
+
+          expect(page).to have_content(@review_1.title)
+          expect(page).to have_content(@review_1.rating)
+          expect(page).to have_link(@review_1.user.name)
+        end
+      end
     end
 
     describe "and click the 'Delete Book' link" do
