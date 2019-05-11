@@ -43,7 +43,7 @@ RSpec.describe 'As a user', type: :feature do
       visit author_path(@flapjacks)
 
       within("#book-#{@book_1.id}-info") do
-        expect(page).to have_content("Co-authors: Vincenzo 'Big' Cheese")
+        expect(page).to have_link("Vincenzo 'Big' Cheese")
       end
 
       within("#book-#{@book_2.id}-info") do
@@ -97,7 +97,7 @@ RSpec.describe 'As a user', type: :feature do
       within("#book-#{@book_1.id}-info") do
         click_link @review_1.user.name
       end
-      
+
       expect(current_path).to eq(user_path(@review_1.user.id))
     end
 
