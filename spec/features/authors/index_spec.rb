@@ -30,28 +30,32 @@ RSpec.describe 'As a user', type: :feature do
       within("#author-#{@author_1.id}-info") do
         expect(page).to have_css("img[src='#{@author_1.image}']")
         expect(page).to have_link("#{@author_1.name}")
-        expect(page).to have_content("#Books: #{@book_1.title}")
-        expect(page).to have_content("#Number of Books: #{@author_1.book_count}")
+        expect(page).to have_content("Books:")
+        expect(page).to have_content(@book_1.title)
+        expect(page).to have_content("Number of Books: #{@author_1.book_count}")
       end
 
       within("#author-#{@author_2.id}-info") do
         expect(page).to have_css("img[src='#{@author_2.image}']")
         expect(page).to have_link("#{@author_2.name}")
-        expect(page).to have_content("Books: #{@book_2.title}")
+        expect(page).to have_content("Books:")
+        expect(page).to have_content(@book_2.title)
         expect(page).to have_content("Number of Books: #{@author_2.book_count}")
       end
 
       within("#author-#{@author_3.id}-info") do
         expect(page).to have_css("img[src='#{@author_3.image}']")
         expect(page).to have_link("#{@author_3.name}")
-        expect(page).to have_content("Books: #{@book_3.title}")
+        expect(page).to have_content("Books:")
+        expect(page).to have_content(@book_3.title)
         expect(page).to have_content("Number of Books: #{@author_3.book_count}")
       end
 
       within("#author-#{@author_4.id}-info") do
         expect(page).to have_css("img[src='#{@author_4.image}']")
         expect(page).to have_link("#{@author_4.name}")
-        expect(page).to have_content("Books: #{@book_1.title}")
+        expect(page).to have_content("Books:")
+        expect(page).to have_content(@book_1.title)
         expect(page).to have_content("Number of Books: #{@author_4.book_count}")
       end
     end
