@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :authors
 
   resources :users, only: [:show, :create]
+
+  get :root, to: 'welcome#index'
 end
