@@ -31,7 +31,12 @@
     <img src="<%= book.image %>" alt="<%= book.title %> Cover">
     <h5><%= link_to book.title, book_path(book) %></h5>
     <p>Average Rating: <%= book.average_rating %> (<%= book.review_count %>)</p>
-    <p><%= book.author_names.join(", ") %></p>
+    <p>Authors:</p>
+    <ul>
+      <% book.authors.each do |author| %>
+        <li><%= link_to author.name, author_path(author) %></li>
+        <% end %>
+    </ul>
     <p>Pages: <%= book.pages %></p>
     <p>Year Published: <%= book.year %></p>
   </section>
