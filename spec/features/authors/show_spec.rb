@@ -71,6 +71,20 @@ RSpec.describe 'As a user', type: :feature do
       end
     end
 
+    it "I should see the username associated with the top review as a link" do
+      @user_1 = User.create!(name: "Anony-moose")
+      @user_2 = User.create!(name: "VinnyCheeseFan")
+
+      @review_1 = @book_1.reviews.create!(text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
+      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 1, user: @user_2)
+
+      visit author_path(@flapjacks)
+
+      within("#book-#{@book_1.id}-info") do
+        expect(page).to have_link(@review_1.user.name)
+      end
+    end
+
     describe "and click the 'Delete Author' link" do
       it "it displays a confirmation message that the author has been deleted" do
         visit author_path(@flapjacks)
