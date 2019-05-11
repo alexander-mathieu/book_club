@@ -3,4 +3,8 @@ class Author < ApplicationRecord
   has_many :books, through: :books_by_author
 
   validates_presence_of :name
+
+  def book_count
+    books.count
+  end
 end
