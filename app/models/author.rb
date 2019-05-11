@@ -7,4 +7,8 @@ class Author < ApplicationRecord
   def book_count
     books.count
   end
+
+  def top_three_books
+    books.ratings_sort(:desc).limit(3)
+  end
 end
