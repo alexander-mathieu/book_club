@@ -7,7 +7,12 @@
     <p>Pages: <%= book.pages %></p>
     <p>Published: <%= book.year %></p>
     <% if book.coauthors(@author).any? %>
-      <p>Co-authors: <%= book.coauthors(@author).join(', ') %></p>
+      <p>Co-authors:</p>
+        <% book.coauthors(@author).each do |coauthor| %>
+        <ul>
+          <li><%= link_to coauthor.name, author_path(coauthor) %></li>
+        </ul>
+        <% end %>
     <% end %>
     <% if book.highest_three_reviews.any? %>
     <% top_review = book.highest_three_reviews.first %>
