@@ -9,6 +9,7 @@
 </section>
 
 <section id="review-stats">
+  <h3>Average Rating: <%= @book.average_rating.round(2) %></h3>
   <h3>What people are saying:</h3>
   <section id="highest-reviews" style="display:inline-block;">
     <% @book.highest_three_reviews.each do |review| %>
