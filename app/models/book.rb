@@ -22,6 +22,14 @@ class Book < ApplicationRecord
     reviews.count
   end
 
+  def highest_three_reviews
+    reviews.order(rating: :desc).limit(3)
+  end
+
+  def lowest_three_reviews
+    reviews.order(rating: :asc).limit(3)
+  end
+
   def self.ratings_sort(order)
     if order == :desc
       select('books.*, COALESCE(AVG(reviews.rating), 0) AS average_rating')

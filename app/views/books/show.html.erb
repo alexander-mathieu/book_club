@@ -8,8 +8,32 @@
   <p>Author(s): <%= @book.author_names.join(", ") %></p>
 </section>
 
-<section class="reviews-list">
-  <h3>Reviews:</h3>
+<section id="review-stats">
+  <h3>Average Rating: <%= @book.average_rating.round(2) %></h3>
+  <h3>What people are saying:</h3>
+  <section id="highest-reviews" style="display:inline-block;">
+    <% @book.highest_three_reviews.each do |review| %>
+      <div id="high-review-<%= review.id %>">
+        <h4><%= review.title %>, <%= review.rating %> Stars</h4>
+        <%= link_to review.user.name, user_path(review.user.id) %>
+      </div>
+    <% end %>
+  </section>
+  <section id="lowest-reviews" style="display:inline-block;">
+    <% @book.lowest_three_reviews.each do |review| %>
+      <div id="low-review-<%= review.id %>">
+        <h4><%= review.title %>, <%= review.rating %> Stars</h4>
+        <%= link_to review.user.name, user_path(review.user.id) %>
+      </div>
+      <% end %>
+  </section>
+</section>
+<br>
+
+<%= link_to "Delete Book", book_path(@book), method: :delete, data: {confirm: "Are you sure you want to delete the book?"} %>
+
+<section class="all-reviews">
+  <h3>All Reviews:</h3>
   <% @book.reviews.each do |review| %>
     <div id="review-<%= review.id %>">
       <h5><%= review.title %></h5>
@@ -18,5 +42,3 @@
     </div>
     <% end %>
 </section>
-
-<%= link_to "Delete Book", book_path(@book), method: :delete, data: {confirm: "Are you sure you want to delete the book?"} %>
