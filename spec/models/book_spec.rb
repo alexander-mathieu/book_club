@@ -124,5 +124,9 @@ RSpec.describe Book, type: :model do
       expect(Book.reviews_sort(:asc)).to eq([@book_6, @book_5, @book_3, @book_4, @book_2, @book_1])
       expect(Book.reviews_sort(:desc)).to eq([@book_1, @book_2, @book_4, @book_3, @book_5, @book_6])
     end
+
+    it ".highest_three_rated" do
+      expect(Book.highest_three_rated).to eq([@book_5, @book_1, @book_2])
+    end
   end
 end
