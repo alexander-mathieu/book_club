@@ -93,7 +93,13 @@ RSpec.describe 'As a user', type: :feature do
 
         click_link "Delete Author"
 
-        expect(page).to_not have_content(@flapjacks.name)
+        within("#book-stats") do
+          expect(page).to_not have_content(@flapjacks.name)
+        end
+
+        within("#all-books") do
+          expect(page).to_not have_content(@flapjacks.name)
+        end
       end
 
       it 'also deletes all books attached to this author' do
