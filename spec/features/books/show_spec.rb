@@ -135,6 +135,14 @@ RSpec.describe "as a user" do
       end
     end
 
+    it "it displays an average rating for the book" do
+      visit book_path(@book_1)
+
+      within "#review-stats" do
+        expect(page).to have_content(@book_1.average_rating.round(2))
+      end
+    end
+
     describe "and click the 'Delete Book' link" do
       it "it displays a confirmation message that the book has been deleted" do
         visit book_path(@book_1)
