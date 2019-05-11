@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @disabled_nav = true
+    render layout: false
   end
 end
