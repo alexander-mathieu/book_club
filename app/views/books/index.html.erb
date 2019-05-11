@@ -9,12 +9,12 @@
 
 <section id="book-stats">
   <section id="highest-rated" style="display:inline-block;">
-    <% @highest_three_ratings.each do |book| %>
+    <% @highest_three_rated.each do |book| %>
       <h4><%= link_to book.title, book_path(book) %>, <%= book.average_rating %> Stars</h4>
     <% end %>
   </section>
   <section id="lowest-rated" style="display:inline-block;">
-    <% @lowest_three_ratings.each do |book| %>
+    <% @lowest_three_rated.each do |book| %>
       <h4><%= link_to book.title, book_path(book) %>, <%= book.average_rating %> Stars</h4>
     <% end %>
   </section>
