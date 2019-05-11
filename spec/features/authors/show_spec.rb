@@ -54,5 +54,21 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to_not have_content("Co-authors:")
       end
     end
+
+    it 'I should see the top review for each book' do
+      @user_1 = User.create!(name: "Anony-moose")
+      @user_2 = User.create!(name: "VinnyCheeseFan")
+
+      @review_1 = @book_1.reviews.create!(text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
+      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 1, user: @user_2)
+
+      visit author_path(@flapjacks)
+
+      within("#book-#{@book_1}-info") do
+        expect(page).to have_content(@review_1.title)
+        expect(page).to have_content(@review_1.rating)
+        expect(page).to have_content(@review_1.user.name)
+      end
+    end
   end
 end
