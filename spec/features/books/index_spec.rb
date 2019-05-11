@@ -110,6 +110,60 @@ RSpec.describe "As a user", type: :feature do
       expect(current_path).to eq(new_book_path)
     end
 
+    describe "and look at the book statistics section"
+      before :each do
+        @user_3 = User.create!(name: "LogyBear")
+        @user_4 = User.create!(name: "MILLS")
+        @user_5 = User.create!(name: "DocPat")
+        @user_6 = User.create!(name: "BilhamTheConqueror")
+
+        @book_4 = Book.create!(title: "Mustache City", pages: 450, year: 2017)
+        @book_5 = Book.create!(title: "Starbucks Hacks: Cheap Drinks That Taste Expensive", pages: 10, year: 2015)
+        @book_6 = Book.create!(title: "The Hardest Way to Earn an Easy Living", pages: 1000, year: 2019)
+        @book_4.authors << [@author_1, @author_2]
+        @book_5.authors << @author_3
+        @book_6.authors << @author_4
+
+        @review_5 = @book_1.reviews.create!(title: "Review Title 5", text: "Review 5 Text", rating: 1, user: @user_3)
+        @review_6 = @book_1.reviews.create!(title: "Review Title 6", text: "Review 6 Text", rating: 2, user: @user_4)
+        @review_7 = @book_1.reviews.create!(title: "Review Title 7", text: "Review 7 Text", rating: 3, user: @user_5)
+        @review_8 = @book_1.reviews.create!(title: "Review Title 8", text: "Review 8 Text", rating: 4, user: @user_6)
+        @review_9 = @book_2.reviews.create!(title: "Review Title 9", text: "Review 9 Text", rating: 5, user: @user_1)
+        @review_10 = @book_2.reviews.create!(title: "Review Title 10", text: "Review 10 Text", rating: 1, user: @user_3)
+        @review_11 = @book_2.reviews.create!(title: "Review Title 11", text: "Review 11 Text", rating: 2, user: @user_4)
+        @review_12 = @book_3.reviews.create!(title: "Review Title 12", text: "Review 12 Text", rating: 3, user: @user_5)
+        @review_13 = @book_3.reviews.create!(title: "Review Title 13", text: "Review 13 Text", rating: 4, user: @user_2)
+        @review_14 = @book_3.reviews.create!(title: "Review Title 14", text: "Review 14 Text", rating: 5, user: @user_3)
+        @review_15 = @book_4.reviews.create!(title: "Review Title 15", text: "Review 15 Text", rating: 1, user: @user_1)
+        @review_16 = @book_4.reviews.create!(title: "Review Title 16", text: "Review 16 Text", rating: 2, user: @user_2)
+        @review_17 = @book_5.reviews.create!(title: "Review Title 17", text: "Review 17 Text", rating: 5, user: @user_1)
+        @review_18 = @book_6.reviews.create!(title: "Review Title 18", text: "Review 18 Text", rating: 4, user: @user_2)
+      end
+
+      it "I see the three highest rated books" do
+        visit books_path
+
+        within "#book-stats" do
+          expect(page).to have_link()
+          expect(page).to have_content()
+
+          expect(page).to have_link()
+          expect(page).to have_content()
+
+          expect(page).to have_link()
+          expect(page).to have_content()
+        end
+
+      end
+
+      it "I see the three lowest rated books" do
+
+      end
+
+      it "I see the three users that have written the most reviews" do
+
+      end
+
     describe "I see sorting methods" do
       it "to sort by average rating" do
         visit books_path
