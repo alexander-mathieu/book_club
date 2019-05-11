@@ -175,7 +175,18 @@ RSpec.describe "As a user", type: :feature do
       end
 
       it "I see the three users that have written the most reviews" do
+        within "#book-stats" do
+          within "#user-stats" do
+            expect(page).to have_link(@user_1.name)
+            expect(page).to have_content(@user_1.review_count)
 
+            expect(page).to have_link(@user_2.name)
+            expect(page).to have_content(@user_2.review_count)
+
+            expect(page).to have_link(@user_3.name)
+            expect(page).to have_content(@user_3.review_count)
+          end
+        end
       end
 
     describe "I see sorting methods" do
