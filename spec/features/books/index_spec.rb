@@ -84,15 +84,11 @@ RSpec.describe "As a user", type: :feature do
       visit books_path
 
       within("#book-#{@book_1.id}") do
-        expect(page).to have_content("Average Rating: 4.0 (2)")
+        expect(page).to have_content("Average Rating: 3.0 (6)")
       end
 
       within("#book-#{@book_2.id}") do
-        expect(page).to have_content("Average Rating: 2.0 (1)")
-      end
-
-      within("#book-#{@book_3.id}") do
-        expect(page).to have_content("Average Rating: 3.0 (1)")
+        expect(page).to have_content("Average Rating: 2.5 (4)")
       end
     end
 
@@ -197,13 +193,19 @@ RSpec.describe "As a user", type: :feature do
 
         click_link 'Sort by: Lowest Rating'
 
-        expect(@book_2.title).to appear_before(@book_3.title)
-        expect(@book_3.title).to appear_before(@book_1.title)
+        expect(@book_4.title).to appear_before(@book_2.title)
+        expect(@book_2.title).to appear_before(@book_1.title)
+        expect(@book_1.title).to appear_before(@book_3.title)
+        expect(@book_3.title).to appear_before(@book_6.title)
+        expect(@book_6.title).to appear_before(@book_5.title)
 
         click_link 'Sort by: Highest Rating'
 
-        expect(@book_1.title).to appear_before(@book_3.title)
-        expect(@book_3.title).to appear_before(@book_2.title)
+        expect(@book_5.title).to appear_before(@book_6.title)
+        expect(@book_6.title).to appear_before(@book_3.title)
+        expect(@book_3.title).to appear_before(@book_1.title)
+        expect(@book_1.title).to appear_before(@book_2.title)
+        expect(@book_2.title).to appear_before(@book_4.title)
       end
 
       it "to sort by number of pages" do
