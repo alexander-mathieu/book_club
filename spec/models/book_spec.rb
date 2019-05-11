@@ -130,7 +130,7 @@ RSpec.describe Book, type: :model do
     end
 
     it ".lowest_three_rated" do
-      expect(Book.lowest_three_rated).to eq([@book_6, @book_5, @book_3])
+      expect(Book.lowest_three_rated).to eq([@book_6, @book_3, @book_4])
     end
   end
 end
