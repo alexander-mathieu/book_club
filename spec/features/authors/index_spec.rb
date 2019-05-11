@@ -30,8 +30,8 @@ RSpec.describe 'As a user', type: :feature do
       within("#author-#{@author_1.id}-info") do
         expect(page).to have_css("img[src='#{@author_1.image}']")
         expect(page).to have_link("#{@author_1.name}")
-        expect(page).to have_content("#Books: {@book_1.title}")
-        expect(page).to have_content("#Number of Books: {@author_1.book_count}")
+        expect(page).to have_content("#Books: #{@book_1.title}")
+        expect(page).to have_content("#Number of Books: #{@author_1.book_count}")
       end
 
       within("#author-#{@author_2.id}-info") do
