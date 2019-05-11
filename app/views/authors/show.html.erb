@@ -9,6 +9,15 @@
     <% if book.coauthors(@author).any? %>
       <p>Co-authors: <%= book.coauthors(@author).join(', ') %></p>
     <% end %>
+    <% if book.highest_three_reviews.any? %>
+    <% top_review = book.highest_three_reviews.first %>
+      <p>Top Review:</p>
+      <ul>
+        <li><%= top_review.title %></li>
+        <li><%= top_review.rating %> Stars</li>
+        <li>Posted by: <%= top_review.user.name %></li>
+      </ul>
+    <% end %>
 
   </section>
 <% end %>
