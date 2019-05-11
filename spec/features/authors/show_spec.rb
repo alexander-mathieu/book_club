@@ -70,5 +70,41 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content("Posted by: #{@review_1.user.name}")
       end
     end
+
+    describe "and click the 'Delete Author' link" do
+      it "it displays a confirmation message that the author has been deleted" do
+        visit author_path(@flapjacks)
+
+        click_link "Delete Author"
+
+        expect(page).to have_content("'#{@flapjacks.name}' was deleted.")
+      end
+
+      it "it redirects me to /books" do
+        visit author_path(@flapjacks)
+
+        click_link "Delete Author"
+
+        expect(current_path).to eq(books_path)
+      end
+
+      it "I do not see the deleted author on the /books" do
+        visit author_path(@flapjacks)
+
+        click_link "Delete Author"
+
+        expect(page).to_not have_content(@flapjacks.name)
+      end
+
+      it 'also deletes all books attached to this author' do
+        visit author_path(@flapjacks)
+
+        click_link "Delete Author"
+
+        @flapjacks.books.each do |book|
+          expect(page).to_not have_css("#book-#{book.id}")
+        end
+      end
+    end
   end
 end
