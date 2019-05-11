@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
 
   describe "class methods" do
     it ".top_three_users" do
-      expect(User.top_three_users).to eq([@user_1, @user_4, @user_2])
+      expect(User.top_three_users).to eq([@user_1, @user_2, @user_4])
     end
   end
 end
