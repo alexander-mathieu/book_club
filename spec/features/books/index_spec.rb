@@ -104,7 +104,7 @@ RSpec.describe "As a user", type: :feature do
 
     it "I'm able to navigate to a new book form" do
       visit books_path
-      
+
       click_link "Add a New Book"
 
       expect(current_path).to eq(new_book_path)
@@ -125,7 +125,7 @@ RSpec.describe "As a user", type: :feature do
         expect(@book_3.title).to appear_before(@book_2.title)
       end
 
-      it "to sorts by number of pages" do
+      it "to sort by number of pages" do
         visit books_path
 
         click_link 'Sort by: Most Pages'
@@ -139,9 +139,9 @@ RSpec.describe "As a user", type: :feature do
         expect(@book_2.title).to appear_before(@book_3.title)
       end
 
-      it "to sorts by number of reviews" do
-        review_5 = @book_2.reviews.create!(text: "THIS BOOK IS!", rating: 5, user: @user_1)
-        review_6 = @book_1.reviews.create!(text: "BOOK!", rating: 5, user: @user_2)
+      it "to sort by number of reviews" do
+        @review_5 = @book_2.reviews.create!(text: "THIS BOOK IS!", rating: 5, user: @user_1)
+        @review_6 = @book_1.reviews.create!(text: "BOOK!", rating: 5, user: @user_2)
         visit books_path
 
         click_link 'Sort by: Most Reviews'
