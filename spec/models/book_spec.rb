@@ -128,5 +128,9 @@ RSpec.describe Book, type: :model do
     it ".highest_three_rated" do
       expect(Book.highest_three_rated).to eq([@book_5, @book_1, @book_2])
     end
+
+    it ".lowest_three_rated" do
+      expect(Book.lowest_three_rated).to eq([@book_6, @book_5, @book_3])
+    end
   end
 end
