@@ -90,5 +90,26 @@ RSpec.describe 'As a user', type: :feature do
       expect(review_2.title).to appear_before(review_1.title)
       expect(review_1.title).to appear_before(review_3.title)
     end
+
+    it 'I should be able to delete a review' do
+      visit user_path(@user)
+
+      within("#review-#{@review_1.id}") do
+        expect(page).to have_link("Delete Review")
+      end
+
+      within("#review-#{@review_2.id}") do
+        expect(page).to have_link("Delete Review")
+      end
+
+      within("#review-#{@review_3.id}") do
+        expect(page).to have_link("Delete Review")
+        click_link "Delete Review"
+      end
+
+      expect(current_path).to eq(user_path(@user))
+
+      expect(page).to_not have_css("#review-#{@review_3.id}")
+    end
   end
 end
