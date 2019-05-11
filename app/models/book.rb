@@ -8,10 +8,6 @@ class Book < ApplicationRecord
   validates :title, :pages, :year, presence: true
   validates :title, uniqueness: true
 
-  def author_names
-    authors.pluck(:name)
-  end
-
   def average_rating
     rating = reviews.average(:rating)
     rating = 0 if rating == nil
@@ -71,7 +67,7 @@ class Book < ApplicationRecord
   end
 
   def coauthors(current_author)
-    author_names - [current_author.name]
+    authors - [current_author]
   end
 
   private
