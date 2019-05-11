@@ -6,6 +6,9 @@
     <h5><%= book.title %></h5>
     <p>Pages: <%= book.pages %></p>
     <p>Published: <%= book.year %></p>
+    <% if book.coauthors(@author).any? %>
+      <p>Co-authors: <%= book.coauthors(@author).join(', ') %></p>
+    <% end %>
 
   </section>
 <% end %>
