@@ -175,6 +175,8 @@ RSpec.describe "As a user", type: :feature do
       end
 
       it "I see the three users that have written the most reviews" do
+        visit books_path
+
         within "#book-stats" do
           within "#user-stats" do
             expect(page).to have_link(@user_1.name)

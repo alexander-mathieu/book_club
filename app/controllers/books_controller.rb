@@ -12,9 +12,9 @@ class BooksController < ApplicationController
       @books = @books.reviews_sort(sort_order)
     end
 
-    @highest_three_ratings = @books.highest_three_rated
-    @lowest_three_ratings  = @books.lowest_three_rated
-    @top_three_users       = User.all.top_three_users
+    @highest_three_rated = @books.highest_three_rated
+    @lowest_three_rated  = @books.lowest_three_rated
+    @top_three_users     = User.all.top_three_users
   end
 
   def show
