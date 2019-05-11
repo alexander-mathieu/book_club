@@ -25,7 +25,8 @@
   </section>
 </section>
 
-<% @books.each do |book| %>
+<section id="all-books">
+  <% @books.each do |book| %>
   <section class="book" id="book-<%= book.id %>">
     <img src="<%= book.image %>" alt="<%= book.title %> Cover">
     <h5><%= link_to book.title, book_path(book) %></h5>
@@ -34,6 +35,7 @@
     <p>Pages: <%= book.pages %></p>
     <p>Year Published: <%= book.year %></p>
   </section>
-<% end %>
+  <% end %>
+</section>
 
 <%= link_to "Add a New Book", new_book_path %>
