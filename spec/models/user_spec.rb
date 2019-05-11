@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   describe "relationships" do
     it {should have_many :reviews}
   end
-  
+
   before :each do
     @user_1 = User.create!(name: "Anony-moose")
     @user_2 = User.create!(name: "VinnyCheese")
@@ -48,18 +48,18 @@ RSpec.describe User, type: :model do
     @review_15 = @book_4.reviews.create!(title: "Review Title 15", text: "Review 15 Text", rating: 5, user: @user_1)
     @review_16 = @book_4.reviews.create!(title: "Review Title 16", text: "Review 16 Text", rating: 1, user: @user_2)
     @review_17 = @book_5.reviews.create!(title: "Review Title 17", text: "Review 17 Text", rating: 2, user: @user_1)
-    @review_18 = @book_6.reviews.create!(title: "Review Title 18", text: "Review 18 Text", rating: 3, user: @user_1)
+    @review_18 = @book_6.reviews.create!(title: "Review Title 18", text: "Review 18 Text", rating: 3, user: @user_4)
   end
 
   describe "instance methods" do
     it "#review_count" do
-      expect(@user_1.review_count).to eq(6)
+      expect(@user_1.review_count).to eq(5)
     end
   end
 
   describe "class methods" do
     it ".top_three_users" do
-      expect(User.top_three_users).to eq(@user_1, @user_2, @user_3)
+      expect(User.top_three_users).to eq([@user_1, @user_4, @user_2])
     end
   end
 end
