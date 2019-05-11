@@ -32,6 +32,22 @@ RSpec.describe 'As a user', type: :feature do
       end
     end
 
+    it "I'm able to use the navigation bar to navigate'" do
+      visit authors_path
+
+      click_link "Browse by Book"
+
+      expect(current_path).to eq(books_path)
+
+      click_link "Browse by Author"
+
+      expect(current_path).to eq(authors_path)
+
+      click_link "Home"
+
+      expect(current_path).to eq(root_path)
+    end
+
     it 'I should see all Authors in the database' do
       visit authors_path
 
