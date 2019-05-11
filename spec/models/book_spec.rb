@@ -43,6 +43,11 @@ RSpec.describe Book, type: :model do
       expect(@book_1.review_count).to eq(2)
       expect(@book_2.review_count).to eq(1)
     end
+
+    it ".coauthors" do
+      expect(@book_1.coauthors(@author_1)).to eq(["Bob"])
+      expect(@book_1.coauthors(@author_2)).to eq(["Jim"])
+    end
   end
 
   describe 'class methods' do
