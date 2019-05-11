@@ -119,7 +119,7 @@ RSpec.describe "as a user" do
           expect(page).to have_link(@review_6.user.name)
         end
 
-        within "lowest-reviews" do
+        within "#lowest-reviews" do
           expect(page).to have_content(@review_2.title)
           expect(page).to have_content(@review_2.rating)
           expect(page).to have_link(@review_2.user.name)
@@ -128,9 +128,9 @@ RSpec.describe "as a user" do
           expect(page).to have_content(@review_5.rating)
           expect(page).to have_link(@review_5.user.name)
 
-          expect(page).to have_content(@review_1.title)
-          expect(page).to have_content(@review_1.rating)
-          expect(page).to have_link(@review_1.user.name)
+          expect(page).to have_content(@review_8.title)
+          expect(page).to have_content(@review_8.rating)
+          expect(page).to have_link(@review_8.user.name)
         end
       end
     end
