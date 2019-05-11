@@ -66,8 +66,8 @@ RSpec.describe 'As a user', type: :feature do
 
       within("#book-#{@book_1}-info") do
         expect(page).to have_content(@review_1.title)
-        expect(page).to have_content(@review_1.rating)
-        expect(page).to have_content(@review_1.user.name)
+        expect(page).to have_content("#{@review_1.rating} Stars")
+        expect(page).to have_content("Posted by: #{@review_1.user.name}")
       end
     end
   end
