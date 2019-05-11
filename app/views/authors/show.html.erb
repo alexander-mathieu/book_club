@@ -15,10 +15,9 @@
       <ul>
         <li><%= top_review.title %></li>
         <li><%= top_review.rating %> Stars</li>
-        <li>Posted by: <%= top_review.user.name %></li>
+        <li>Posted by: <%= link_to top_review.user.name, user_path(top_review.user) %></li>
       </ul>
     <% end %>
-
   </section>
 <% end %>
 
