@@ -64,7 +64,7 @@ RSpec.describe 'As a user', type: :feature do
 
       visit author_path(@flapjacks)
 
-      within("#book-#{@book_1}-info") do
+      within("#book-#{@book_1.id}-info") do
         expect(page).to have_content(@review_1.title)
         expect(page).to have_content("#{@review_1.rating} Stars")
         expect(page).to have_content("Posted by: #{@review_1.user.name}")
