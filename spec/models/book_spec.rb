@@ -52,12 +52,18 @@ RSpec.describe Book, type: :model do
       expect(@book_2.review_count).to eq(1)
     end
 
+
     it "#highest_three_reviews" do
       expect(@book_1.highest_three_reviews).to eq([@review_1, @review_6, @review_5])
     end
 
     it "#lowest_three_reviews" do
       expect(@book_1.lowest_three_reviews).to eq([@review_2, @review_7, @review_4])
+    end
+
+    it "#coauthors" do
+      expect(@book_1.coauthors(@author_1)).to eq(["Bob"])
+      expect(@book_1.coauthors(@author_2)).to eq(["Jim"])
     end
   end
 

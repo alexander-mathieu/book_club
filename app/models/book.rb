@@ -62,6 +62,10 @@ class Book < ApplicationRecord
     end
   end
 
+  def coauthors(current_author)
+    author_names - [current_author.name]
+  end
+
   private
 
   def titlecase_title

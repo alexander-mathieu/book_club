@@ -1,0 +1,18 @@
+<h2><%= @user.name %></h2>
+
+<a href="<%= user_path(@user, sort: "newest") %>">Sort by: Newest</a>
+<a href="<%= user_path(@user, sort: "oldest") %>">Sort by: Oldest</a>
+
+<section class="user-reviews">
+  <% @reviews.each do |review| %>
+    <div class="user-review" id="review-<%= review.id %>">
+      <img src="<%= review.book.image %>" alt="<%= review.book.title %> Cover">
+      <h4>Book: <%= review.book.title %></h4>
+      <p>Posted on: <%= review.date %></p>
+      <h5><%= review.title %></h5>
+      <p>Rating: <%= review.rating %></p>
+      <p>Review: <%= review.text %></p>
+      <%= link_to "Delete Review", book_review_path(review), method: :delete, data: {confirm: "Are you sure you want to delete the review?"} %>
+    </div>
+  <% end %>
+</section>
