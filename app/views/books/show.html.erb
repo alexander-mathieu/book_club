@@ -5,7 +5,12 @@
 <section id="book-<%= @book.id %>-info">
   <p>Pages: <%= @book.pages %></p>
   <p>Published: <%= @book.year %></p>
-  <p>Author(s): <%= @book.author_names.join(", ") %></p>
+  <p>Author(s):</p>
+    <ul>
+      <% @book.authors.each do |author| %>
+        <li><%= link_to author.name, author_path(author) %></li>
+        <% end %>
+    </ul>
 </section>
 
 <section id="review-stats">
