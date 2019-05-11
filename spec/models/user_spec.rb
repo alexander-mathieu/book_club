@@ -40,15 +40,15 @@ RSpec.describe User, type: :model do
     @review_7 = @book_2.reviews.create!(title: "Review Title 7", text: "Review 7 Text", rating: 2, user: @user_1)
     @review_8 = @book_2.reviews.create!(title: "Review Title 8", text: "Review 8 Text", rating: 3, user: @user_2)
     @review_9 = @book_2.reviews.create!(title: "Review Title 9", text: "Review 9 Text", rating: 4, user: @user_3)
-    @review_10 = @book_2.reviews.create!(title: "Review Title 10", text: "Review 10 Text", rating: 5, user: @user_4)
+    @review_10 = @book_2.reviews.create!(title: "Review Title 10", text: "Review 10 Text", rating: 5, user: @user_5)
     @review_11 = @book_3.reviews.create!(title: "Review Title 11", text: "Review 11 Text", rating: 1, user: @user_1)
     @review_12 = @book_3.reviews.create!(title: "Review Title 12", text: "Review 12 Text", rating: 2, user: @user_2)
     @review_13 = @book_3.reviews.create!(title: "Review Title 13", text: "Review 13 Text", rating: 3, user: @user_3)
-    @review_14 = @book_3.reviews.create!(title: "Review Title 14", text: "Review 14 Text", rating: 4, user: @user_4)
+    @review_14 = @book_3.reviews.create!(title: "Review Title 14", text: "Review 14 Text", rating: 4, user: @user_6)
     @review_15 = @book_4.reviews.create!(title: "Review Title 15", text: "Review 15 Text", rating: 5, user: @user_1)
-    @review_16 = @book_4.reviews.create!(title: "Review Title 16", text: "Review 16 Text", rating: 1, user: @user_2)
+    @review_16 = @book_4.reviews.create!(title: "Review Title 16", text: "Review 16 Text", rating: 1, user: @user_4)
     @review_17 = @book_5.reviews.create!(title: "Review Title 17", text: "Review 17 Text", rating: 2, user: @user_1)
-    @review_18 = @book_6.reviews.create!(title: "Review Title 18", text: "Review 18 Text", rating: 3, user: @user_4)
+    @review_18 = @book_6.reviews.create!(title: "Review Title 18", text: "Review 18 Text", rating: 3, user: @user_2)
   end
 
   describe "instance methods" do
@@ -59,7 +59,7 @@ RSpec.describe User, type: :model do
 
   describe "class methods" do
     it ".top_three_users" do
-      expect(User.top_three_users).to eq([@user_1, @user_2, @user_4])
+      expect(User.top_three_users).to eq([@user_1, @user_2, @user_3])
     end
   end
 end
