@@ -7,6 +7,24 @@
 <a href=<%= books_path(reviews: "high") %> id="reviews-high">Sort by: Most Reviews</a>
 <a href=<%= books_path(reviews: "low") %> id="reviews-low">Sort by: Least Reviews</a>
 
+<section id="book-stats">
+  <section id="highest-rated" style="display:inline-block;">
+    <% @highest_three_rated.each do |book| %>
+      <h4><%= link_to book.title, book_path(book) %>, <%= book.average_rating %> Stars</h4>
+    <% end %>
+  </section>
+  <section id="lowest-rated" style="display:inline-block;">
+    <% @lowest_three_rated.each do |book| %>
+      <h4><%= link_to book.title, book_path(book) %>, <%= book.average_rating %> Stars</h4>
+    <% end %>
+  </section>
+  <section id="user-stats" style="display:inline-block;">
+    <% @top_three_users.each do |user| %>
+      <h4><%= link_to user.name, user_path(user) %>, <%= user.review_count %> Reviews</h4>
+    <% end %>
+  </section>
+</section>
+
 <% @books.each do |book| %>
   <section class="book" id="book-<%= book.id %>">
     <img src="<%= book.image %>" alt="<%= book.title %> Cover">
