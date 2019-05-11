@@ -22,6 +22,16 @@ RSpec.describe 'As a user', type: :feature do
       @review_4 = @book_3.reviews.create!(text: "This book went to the market!", rating: 3, user: @user_2)
     end
 
+    it "I see a navigation bar" do
+      visit authors_path
+
+      within("#nav") do
+        expect(page).to have_link("Home")
+        expect(page).to have_link("Browse by Author")
+        expect(page).to have_link("Browse by Book")
+      end
+    end
+
     it 'I should see all Authors in the database' do
       visit authors_path
 
