@@ -158,7 +158,20 @@ RSpec.describe "As a user", type: :feature do
       end
 
       it "I see the three lowest rated books" do
+        visit books_path
 
+        within "#book-stats" do
+          within "#lowest-rated" do
+            expect(page).to have_link(@book_4.title)
+            expect(page).to have_content(@book_4.average_rating)
+
+            expect(page).to have_link(@book_1.title)
+            expect(page).to have_content(@book_1.average_rating)
+
+            expect(page).to have_link(@book_2.title)
+            expect(page).to have_content(@book_2.average_rating)
+          end
+        end
       end
 
       it "I see the three users that have written the most reviews" do
