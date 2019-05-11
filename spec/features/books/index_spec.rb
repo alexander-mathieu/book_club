@@ -144,16 +144,17 @@ RSpec.describe "As a user", type: :feature do
         visit books_path
 
         within "#book-stats" do
-          expect(page).to have_link()
-          expect(page).to have_content()
+          within "#highest-rated" do
+            expect(page).to have_link(@book_5.title)
+            expect(page).to have_content(@book_5.average_rating)
 
-          expect(page).to have_link()
-          expect(page).to have_content()
+            expect(page).to have_link(@book_6.title)
+            expect(page).to have_content(@book_6.average_rating)
 
-          expect(page).to have_link()
-          expect(page).to have_content()
+            expect(page).to have_link(@book_3.title)
+            expect(page).to have_content(@book_3.average_rating)
+          end
         end
-
       end
 
       it "I see the three lowest rated books" do
