@@ -3,8 +3,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if params[:sort].nil?
       @reviews = @user.reviews
-    else
+    elsif params[:sort] == "newest" || params[:sort] == "oldest"
       @reviews = @user.reviews.sort_by_date(params[:sort])
+    else
+      @reviews = @user.reviews.sort_by_rating(params[:sort])
     end
   end
 end
