@@ -53,5 +53,26 @@ RSpec.describe Review, type: :model do
       expect(Review.sort_by_date("newest")).to eq([@review_3, @review_1, @review_2])
       expect(Review.sort_by_date("oldest")).to eq([@review_2, @review_1, @review_3])
     end
+
+    it '.sort_by_rating' do
+      expect(Review.sort_by_rating("highest")).to eq([@review_1, @review_3, @review_2])
+      expect(Review.sort_by_rating("highest")).to eq([@review_2, @review_3, @review_1])
+
+      Review.destroy_all
+
+      user = User.create!(name: "VinnyCheese")
+
+      travel_to Time.zone.local(2019, 05, 10, 18, 00, 00)
+      review_1 = @book_1.reviews.create!(title: "Wow!", text: "THIS BOOK IS AWESOME!", rating: 3, user: user)
+
+      travel_to Time.zone.local(2019, 05, 10, 10, 00, 00)
+      review_2 = @book_2.reviews.create!(title: "Disappointing...", text: "This book seemed like it was more about drones than Mars.", rating: 3, user: user)
+
+      travel_to Time.zone.local(2019, 05, 11, 18, 00, 00)
+      review_3 = @book_3.reviews.create!(title: "All the way home!", text: "This book went to the market!", rating: 3, user: user)
+
+      expect(Review.sort_by_rating("highest")).to eq([review_3, review_1, review_2])
+      expect(Review.sort_by_rating("lowest")).to eq([review_2, review_1, review_3])
+    end
   end
 end
