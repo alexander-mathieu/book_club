@@ -74,6 +74,10 @@ class Book < ApplicationRecord
     author_names - [current_author.name]
   end
 
+  def reviewers
+    reviews.joins(:user).pluck(:name)
+  end
+
   private
 
   def titlecase_title
