@@ -15,7 +15,7 @@
     <%= text_field :authors, :name %>
 
     <%= f.label :image, "Image URL:" %>
-    <%= f.text_field :image %>
+    <%= f.text_field :image, value: "" %>
 
     <%= f.submit "Add Book" %>
   <% end %>
