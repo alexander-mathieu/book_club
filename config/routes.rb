@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :create]
 
-  get :root, to: 'welcome#index'
+  root to: 'welcome#index'
 end
