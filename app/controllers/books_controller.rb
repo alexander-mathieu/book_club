@@ -62,7 +62,7 @@ class BooksController < ApplicationController
   end
 
   def split_authors
-    params[:book][:authors].split(", ")
+    params[:authors][:name].split(", ")
   end
 
   def find_order(value)
