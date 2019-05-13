@@ -40,16 +40,16 @@ RSpec.describe 'As a user', type: :feature do
 
       new_review = Review.last
 
-      expect(current_path).to eq(books_path(@book))
+      expect(current_path).to eq(book_path(@book))
 
-      # within(".reviews-list") do
-      #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(title)
-      #     expect(page).to have_content(username.titlecase)
-      #     expect(page).to have_content(rating)
-      #     expect(page).to have_content(text)
-      #   end
-      # end
+      within(".all-reviews") do
+        within("#review-#{new_review.id}") do
+          expect(page).to have_content(title)
+          expect(page).to have_content(username.titlecase)
+          expect(page).to have_content(rating)
+          expect(page).to have_content(text)
+        end
+      end
     end
 
     it 'I can create a new review with a new user' do
@@ -69,16 +69,16 @@ RSpec.describe 'As a user', type: :feature do
 
       new_review = Review.last
 
-      expect(current_path).to eq(books_path(@book))
+      expect(current_path).to eq(book_path(@book))
 
-      # within(".reviews-list") do
-      #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(title)
-      #     expect(page).to have_content(username.titlecase)
-      #     expect(page).to have_content(rating)
-      #     expect(page).to have_content(text)
-      #   end
-      # end
+      within(".all-reviews") do
+        within("#review-#{new_review.id}") do
+          expect(page).to have_content(title)
+          expect(page).to have_content(username.titlecase)
+          expect(page).to have_content(rating)
+          expect(page).to have_content(text)
+        end
+      end
     end
 
     it 'I can create a new review with a non-titlecase user' do
@@ -98,16 +98,16 @@ RSpec.describe 'As a user', type: :feature do
 
       new_review = Review.last
 
-      expect(current_path).to eq(books_path(@book))
+      expect(current_path).to eq(book_path(@book))
 
-      # within(".reviews-list") do
-      #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(title)
-      #     expect(page).to have_content(username.titlecase)
-      #     expect(page).to have_content(rating)
-      #     expect(page).to have_content(text)
-      #   end
-      # end
+      within(".all-reviews") do
+        within("#review-#{new_review.id}") do
+          expect(page).to have_content(title)
+          expect(page).to have_content(username.titlecase)
+          expect(page).to have_content(rating)
+          expect(page).to have_content(text)
+        end
+      end
     end
 
     it 'I can create a new review with a non-titlecase new user' do
@@ -127,20 +127,20 @@ RSpec.describe 'As a user', type: :feature do
 
       new_review = Review.last
 
-      expect(current_path).to eq(books_path(@book))
+      expect(current_path).to eq(book_path(@book))
 
-      # within(".reviews-list") do
-      #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(title)
-      #     expect(page).to have_content(username.titlecase)
-      #     expect(page).to have_content(rating)
-      #     expect(page).to have_content(text)
-      #   end
-      # end
+      within(".all-reviews") do
+        within("#review-#{new_review.id}") do
+          expect(page).to have_content(title)
+          expect(page).to have_content(username.titlecase)
+          expect(page).to have_content(rating)
+          expect(page).to have_content(text)
+        end
+      end
     end
 
-    xit 'I cannot create a new review on a book that user has already reviewed' do
-      @book.reviews.create(title: "No!", rating: 1, text: "Terrible book!", user_id: @user.id)
+    it 'I cannot create a new review on a book that user has already reviewed' do
+      old_review = @book.reviews.create(title: "No!", rating: 1, text: "Terrible book!", user_id: @user.id)
       visit new_book_review_path(@book)
 
       title = "Wow!"
@@ -155,20 +155,15 @@ RSpec.describe 'As a user', type: :feature do
 
       click_button "Create Review"
 
-      # Error?
+      expect(current_path).to eq(book_path(@book))
 
-      # new_review = Review.last
-      #
-      # expect(current_path).to eq(books_path(@book))
+      expect(page).to have_content("Looks like you've already reviewed this book!")
 
-      # within(".reviews-list") do
-      #   within("#review-#{new_review.id}") do
-      #     expect(page).to have_content(title)
-      #     expect(page).to have_content(username.titlecase)
-      #     expect(page).to have_content(rating)
-      #     expect(page).to have_content(text)
-      #   end
-      # end
+      within(".all-reviews") do
+          expect(page).to_not have_content(title)
+          expect(page).to_not have_content(rating)
+          expect(page).to_not have_content(text)
+      end
     end
   end
 end
