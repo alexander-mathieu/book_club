@@ -34,7 +34,7 @@ class BooksController < ApplicationController
       redirect_to(book_path(@book))
     else
       flash.notice = "Looks like that title is already in the nook!"
-      redirect_to new_book_path
+      render :new
     end
   end
 
