@@ -43,7 +43,7 @@ RSpec.describe 'As a user', type: :feature do
       visit author_path(@flapjacks)
 
       within("#book-#{@book_1.id}-info") do
-        expect(page).to have_content("Co-authors: Vincenzo 'Big' Cheese")
+        expect(page).to have_link("Vincenzo 'Big' Cheese")
       end
 
       within("#book-#{@book_2.id}-info") do
@@ -69,6 +69,36 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content("#{@review_1.rating} Stars")
         expect(page).to have_content("Posted by: #{@review_1.user.name}")
       end
+    end
+
+    it "I should see the username associated with the top review as a link" do
+      @user_1 = User.create!(name: "Anony-moose")
+      @user_2 = User.create!(name: "VinnyCheeseFan")
+
+      @review_1 = @book_1.reviews.create!(text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
+      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 1, user: @user_2)
+
+      visit author_path(@flapjacks)
+
+      within("#book-#{@book_1.id}-info") do
+        expect(page).to have_link(@review_1.user.name)
+      end
+    end
+
+    it "I'm able to visit the top reviewer's show page by clicking their username" do
+      @user_1 = User.create!(name: "Anony-moose")
+      @user_2 = User.create!(name: "VinnyCheeseFan")
+
+      @review_1 = @book_1.reviews.create!(text: "THIS BOOK IS AWESOME!", rating: 5, user: @user_1)
+      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 1, user: @user_2)
+
+      visit author_path(@flapjacks)
+
+      within("#book-#{@book_1.id}-info") do
+        click_link @review_1.user.name
+      end
+
+      expect(current_path).to eq(user_path(@review_1.user.id))
     end
 
     describe "and click the 'Delete Author' link" do

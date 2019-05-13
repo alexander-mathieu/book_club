@@ -37,7 +37,8 @@ RSpec.describe "as a user" do
       expect(page).to have_css("img[src='#{@book_1.image}']")
 
       within("#book-#{@book_1.id}-info") do
-        expect(page).to have_content("Author(s): #{@author_1.name}, #{@author_4.name}")
+        expect(page).to have_link("#{@author_1.name}")
+        expect(page).to have_link("#{@author_4.name}")
         expect(page).to have_content("Pages: #{@book_1.pages}")
         expect(page).to have_content("Published: #{@book_1.year}")
       end
@@ -47,7 +48,7 @@ RSpec.describe "as a user" do
       visit book_path(@book_1)
 
       expect(page).to_not have_content(@book_2.title)
-      expect(page).to_not have_content("Author(s): #{@author_2.name}")
+      expect(page).to_not have_link("#{@author_2.name}")
       expect(page).to_not have_content("Pages: #{@book_2.pages}")
       expect(page).to_not have_content("Published: #{@book_2.year}")
       # expect(page).to_not have_css("img[src='#{@book_2.image}']")

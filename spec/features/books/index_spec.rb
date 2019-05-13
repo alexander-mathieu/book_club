@@ -55,8 +55,8 @@ RSpec.describe "As a user", type: :feature do
         expect(page).to have_css("img[src='#{@book_1.image}']")
 
         expect(page).to have_content(@book_1.title)
-        expect(page).to have_content(@book_1.authors[0].name)
-        expect(page).to have_content(@book_1.authors[1].name)
+        expect(page).to have_link(@book_1.authors[0].name)
+        expect(page).to have_link(@book_1.authors[1].name)
         expect(page).to have_content(@book_1.pages)
         expect(page).to have_content(@book_1.year)
       end
@@ -65,7 +65,7 @@ RSpec.describe "As a user", type: :feature do
         expect(page).to have_css("img[src='#{@book_2.image}']")
 
         expect(page).to have_content(@book_2.title)
-        expect(page).to have_content(@book_2.authors[0].name)
+        expect(page).to have_link(@book_2.authors[0].name)
         expect(page).to have_content(@book_2.pages)
         expect(page).to have_content(@book_2.year)
       end
@@ -74,7 +74,7 @@ RSpec.describe "As a user", type: :feature do
         expect(page).to have_css("img[src='#{@book_3.image}']")
 
         expect(page).to have_content(@book_3.title)
-        expect(page).to have_content(@book_3.authors[0].name)
+        expect(page).to have_link(@book_3.authors[0].name)
         expect(page).to have_content(@book_3.pages)
         expect(page).to have_content(@book_3.year)
       end

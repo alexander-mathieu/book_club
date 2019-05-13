@@ -37,11 +37,6 @@ RSpec.describe Book, type: :model do
       @review_7 = @book_1.reviews.create!(title: "This Book Blows", text: "This book should get blown away.", rating: 1, user: @user_6)
     end
 
-    it "#author_names" do
-      expect(@book_1.author_names).to eq(["Jim", "Bob"])
-      expect(@book_2.author_names).to eq(["Bob"])
-    end
-
     it "#average_rating" do
       expect(@book_1.average_rating).to eq(3.0)
       expect(@book_2.average_rating).to eq(2.0)
@@ -62,8 +57,8 @@ RSpec.describe Book, type: :model do
     end
 
     it "#coauthors" do
-      expect(@book_1.coauthors(@author_1)).to eq(["Bob"])
-      expect(@book_1.coauthors(@author_2)).to eq(["Jim"])
+      expect(@book_1.coauthors(@author_1)).to eq([@author_2])
+      expect(@book_1.coauthors(@author_2)).to eq([@author_1])
     end
   end
 
