@@ -28,9 +28,9 @@ RSpec.describe Author, type: :model do
       @user_1 = User.create!(name: "Anony-moose")
       @user_2 = User.create!(name: "VinnyCheese")
 
-      @review_2 = @book_1.reviews.create!(text: "This book didn't do it for me.", rating: 3, user: @user_2)
-      @review_3 = @book_2.reviews.create!(text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
-      @review_4 = @book_3.reviews.create!(text: "This book went to the market!", rating: 3, user: @user_2)
+      @review_2 = @book_1.reviews.create!(title: "Boring", text: "This book didn't do it for me.", rating: 3, user: @user_2)
+      @review_3 = @book_2.reviews.create!(title: "Droning", text: "This book seemed like it was more about drones than Mars.", rating: 2, user: @user_1)
+      @review_4 = @book_3.reviews.create!(title: "Going", text: "This book went to the market!", rating: 3, user: @user_2)
       @review_5 = @book_3.reviews.create!(title: "Not Very Good", text: "I expected more from this author.", rating: 3, user: @user_2)
       @review_6 = @book_4.reviews.create!(title: "Don't Know What to Say", text: "Pretty alright.", rating: 4, user: @user_1)
       @review_7 = @book_4.reviews.create!(title: "Speechless", text: "This book totally blew me away.", rating: 5, user: @user_2)

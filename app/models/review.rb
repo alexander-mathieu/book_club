@@ -2,7 +2,7 @@ class Review < ApplicationRecord
   belongs_to :user
   belongs_to :book
 
-  validates_presence_of :text, :rating
+  validates_presence_of :text, :rating, :title
 
   def date
     created_at.strftime("%d %B %Y")
