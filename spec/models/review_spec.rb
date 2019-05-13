@@ -56,7 +56,7 @@ RSpec.describe Review, type: :model do
 
     it '.sort_by_rating' do
       expect(Review.sort_by_rating("highest")).to eq([@review_1, @review_3, @review_2])
-      expect(Review.sort_by_rating("highest")).to eq([@review_2, @review_3, @review_1])
+      expect(Review.sort_by_rating("lowest")).to eq([@review_2, @review_3, @review_1])
 
       Review.destroy_all
 
