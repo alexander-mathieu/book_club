@@ -5,6 +5,8 @@ class Book < ApplicationRecord
 
   before_validation :titlecase_title
 
+  before_save :set_default_image
+
   validates :title, :pages, :year, presence: true
   validates :title, uniqueness: true
 
@@ -78,6 +80,10 @@ class Book < ApplicationRecord
 
   def titlecase_title
     write_attribute(:title, self.title.titlecase) unless self.title == nil
+  end
+
+  def set_default_image
+    write_attribute(:image, '/assets/default_book.png') if self.image.empty?
   end
 
 end
