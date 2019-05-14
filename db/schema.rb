@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20190507185045) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
-    t.string "image", default: "assets/default.png"
+    t.string "image", default: '/assets/default_author.png'
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20190507185045) do
     t.string "title"
     t.integer "pages"
     t.integer "year"
-    t.string "image", default: "assets/default.png"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
