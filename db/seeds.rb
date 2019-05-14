@@ -10,13 +10,13 @@ User.destroy_all
 @user_5 = User.create(name: "MyCousinVinny")
 
 @author_1  = Author.create(name: "R.L. Stine", image: "https://i3.bookpage.com/interviews/images/1684cdfeefffc04955521ca0f6a1a01b/large.jpg")
-@author_2  = Author.create(name: "John Peel", image: "https://weloveallthat.files.wordpress.com/2013/10/john-peel-in-a-boat.jpg")
+@author_2  = Author.create(name: "John Peel", image: "https://media.gettyimages.com/photos/author-john-peel-attends-the-2016-long-island-scififantasy-convention-picture-id518792208?s=594x594")
 @author_3  = Author.create(name: "Stephen King", image: "https://images-na.ssl-images-amazon.com/images/I/61dWUcBJ10L._SY600_.jpg")
 @author_4  = Author.create(name: "H.P. Lovecraft", image: "http://www.blackthorncommunications.com/wp-content/uploads/2012/05/HP-Lovecraft-Reanimated-3.jpg")
 @author_5  = Author.create(name: "Steven Philip Jones")
 @author_6  = Author.create(name: "Octavio Cariello")
 @author_7  = Author.create(name: "Bret Easton Ellis", image: "https://pixel.nymag.com/imgs/fashion/daily/2019/04/15/15-Bret-Easton-Ellis.w330.h412.jpg")
-@author_8  = Author.create(name: "Bram Stoker", image: "https://www.classic-monsters.com/wp-content/uploads/2014/07/Bram-Stoker_main.jpg")
+@author_8  = Author.create(name: "Bram Stoker", image: "http://www.gstatic.com/tv/thumb/persons/168530/168530_v9_ba.jpg")
 @author_9  = Author.create(name: "Edgar Allan Poe", image: "https://i.ebayimg.com/images/g/TU8AAOSw5cNYFZMr/s-l640.jpg")
 @author_10 = Author.create(name: "Shirley Jackson", image: "https://literaryfictions.files.wordpress.com/2011/08/shirley-jackson3-1916-1965.jpg")
 
