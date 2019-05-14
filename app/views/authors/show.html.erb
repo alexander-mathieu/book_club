@@ -1,10 +1,10 @@
 <div class="heading">
-  <h2 style="display:inline; padding:10px;"><%= @author.name %></h2>
+  <h2 style="display:inline;"><%= @author.name %></h2>
   <%= link_to "Delete Author", author_path(@author), method: :delete, data: {confirm: "Are you sure you want to delete the author?"}, class: "btn btn-danger", style: "margin-bottom:10px;" %>
 </div>
 
 <% @books.each do |book| %>
-<section class="book" id="book-<%= book.id %>">
+<section class="book" id="book-<%= book.id %>-info">
   <div class="card" style="width: 18rem;">
     <img src="<%= book.image %>" class="card-img-top" alt="<%= book.title %> Cover">
     <div class="card-body">
@@ -15,7 +15,7 @@
       <% if book.coauthors(@author).any? %>
       <p>Co-authors:</p>
         <ul class="list-group list-group-flush">
-          <% book.coauthors.each do |author| %>
+          <% book.coauthors(@author).each do |author| %>
             <p><%= link_to author.name, author_path(author), class: "list-group-item" %></p>
             <% end %>
           </ul>
