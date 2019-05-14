@@ -15,4 +15,12 @@ class Review < ApplicationRecord
       order(created_at: :asc)
     end
   end
+
+  def self.sort_by_rating(sort)
+    if sort == "highest"
+      order(rating: :desc, created_at: :desc)
+    else
+      order(rating: :asc, created_at: :asc)
+    end
+  end
 end

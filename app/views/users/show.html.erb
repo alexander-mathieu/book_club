@@ -2,6 +2,8 @@
 
 <a href="<%= user_path(@user, sort: "newest") %>">Sort by: Newest</a>
 <a href="<%= user_path(@user, sort: "oldest") %>">Sort by: Oldest</a>
+<a href="<%= user_path(@user, sort: "highest") %>">Sort by: Highest Rating</a>
+<a href="<%= user_path(@user, sort: "lowest") %>">Sort by: Lowest Rating</a>
 
 <section class="user-reviews">
   <% @reviews.each do |review| %>
