@@ -1,11 +1,4 @@
-<h2>Welcome to the Book Nook!</h2>
-
-<a href=<%= books_path(ratings: "high") %> id="rating-high">Sort by: Highest Rating</a>
-<a href=<%= books_path(ratings: "low") %> id="rating-low">Sort by: Lowest Rating</a>
-<a href=<%= books_path(pages: "high") %> id="pages-high">Sort by: Most Pages</a>
-<a href=<%= books_path(pages: "low") %> id="pages-low">Sort by: Least Pages</a>
-<a href=<%= books_path(reviews: "high") %> id="reviews-high">Sort by: Most Reviews</a>
-<a href=<%= books_path(reviews: "low") %> id="reviews-low">Sort by: Least Reviews</a>
+<h2 class="heading">Welcome to the Book Nook!</h2>
 
 <section id="book-stats">
   <section id="highest-rated" style="display:inline-block;">
@@ -28,17 +21,21 @@
 <section id="all-books">
   <% @books.each do |book| %>
   <section class="book" id="book-<%= book.id %>">
-    <img src="<%= book.image %>" alt="<%= book.title %> Cover">
-    <h5><%= link_to book.title, book_path(book) %></h5>
-    <p>Average Rating: <%= book.average_rating %> (<%= book.review_count %>)</p>
-    <p>Authors:</p>
-    <ul>
-      <% book.authors.each do |author| %>
-        <li><%= link_to author.name, author_path(author) %></li>
+    <div class="card" style="width: 18rem;">
+      <img src="<%= book.image %>" class="card-img-top" alt="<%= book.title %> Cover">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to book.title, book_path(book) %></h5>
+        <p class="card-text">Average Rating: <%= book.average_rating %> (<%= book.review_count %>)</p>
+        <p class="card-text">Pages: <%= book.pages %></p>
+        <p class="card-text">Year Published: <%= book.year %></p>
+        <p class="card-text">Authors:</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <% book.authors.each do |author| %>
+          <p><%= link_to author.name, author_path(author), class: "list-group-item" %></p>
         <% end %>
-    </ul>
-    <p>Pages: <%= book.pages %></p>
-    <p>Year Published: <%= book.year %></p>
+      </ul>
+    </div>
   </section>
   <% end %>
 </section>
