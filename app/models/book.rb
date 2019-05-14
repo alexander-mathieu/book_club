@@ -83,7 +83,7 @@ class Book < ApplicationRecord
   end
 
   def set_default_image
-    write_attribute(:image, '/assets/default_book.png') if self.image.empty?
+    write_attribute(:image, '/assets/default_book.png') if self.image.nil? || self.image.empty?
   end
 
 end
