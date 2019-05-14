@@ -1,4 +1,6 @@
-<h2><%= @user.name %></h2>
+<div class="heading">
+  <h2><%= @user.name %></h2>
+</div>
 
 <a href="<%= user_path(@user, sort: "newest") %>">Sort by: Newest</a>
 <a href="<%= user_path(@user, sort: "oldest") %>">Sort by: Oldest</a>
@@ -6,15 +8,19 @@
 <a href="<%= user_path(@user, sort: "lowest") %>">Sort by: Lowest Rating</a>
 
 <section class="user-reviews">
-  <% @reviews.each do |review| %>
-    <div class="user-review" id="review-<%= review.id %>">
-      <img src="<%= review.book.image %>" alt="<%= review.book.title %> Cover">
-      <h4>Book: <%= review.book.title %></h4>
-      <p>Posted on: <%= review.date %></p>
-      <h5><%= review.title %></h5>
-      <p>Rating: <%= review.rating %></p>
-      <p>Review: <%= review.text %></p>
-      <%= link_to "Delete Review", book_review_path(review), method: :delete, data: {confirm: "Are you sure you want to delete the review?"} %>
+<% @reviews.each do |review| %>
+<div class="user-review" id="review-<%= review.id %>">
+  <div class="card" style="width: 18rem;">
+    <img src="<%= review.book.image %>" class="card-img-top" alt="<%= review.book.title %> Cover">
+    <h4 style="padding:5px;">Book: <%= link_to review.book.title, book_path(review.book) %></h4>
+    <p style="padding:5px;">Posted on: <%= review.date %></p>
+    <div class="card-body">
+      <h5 class="card-title"><%= review.title %></h5>
+      <p class="card-text">Rating: <%= review.rating %></p>
+      <p class="card-text">Review: <%= review.text %></p>
+      <%= link_to "Delete Review", book_review_path(review), method: :delete, data: {confirm: "Are you sure you want to delete the review?"}, class: "btn btn-danger" %>
     </div>
-  <% end %>
+  </div>
+</div>
+<% end %>
 </section>
