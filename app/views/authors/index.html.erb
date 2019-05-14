@@ -1,15 +1,27 @@
-<h2>Author's Lounge</h2>
+<div class="heading">
+  <h2>Author's Lounge</h2>
+</div>
 
 <% @authors.each do |author| %>
-  <section id="author-<%= author.id %>-info">
-    <img src="<%= author.image %>" alt="<%= author.name %> Photo">
-    <h5><%= link_to author.name, author_path(author) %></h5>
-    <p>Books:</p>
-    <ul>
-      <% author.top_three_books.each do |book| %>
-        <li><%= link_to book.title, book_path(book) %></li>
-      <% end %>
-    </ul>
-    <p>Number of Books: <%= author.book_count %></p>
+  <section class="author" id="author-<%= author.id %>-info">
+    <div class="card mb-3">
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="<%= author.image %>" class="card-img" alt="<%= author.name %> Photo">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to author.name, author_path(author) %></h5>
+            <p class="card-text">Books:</p>
+            <ul>
+              <% author.top_three_books.each do |book| %>
+              <li><%= link_to book.title, book_path(book) %></li>
+              <% end %>
+            </ul>
+            <p class="card-text" style="font-weight: bold;">Number of Books: <%= author.book_count %></p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 <% end %>
