@@ -25,7 +25,7 @@ RSpec.describe "As a user", type: :feature do
     it "I see a navigation bar" do
       visit books_path
 
-      within("#nav") do
+      within(".navbar-nav") do
         expect(page).to have_link("Home")
         expect(page).to have_link("Browse by Author")
         expect(page).to have_link("Browse by Book")
