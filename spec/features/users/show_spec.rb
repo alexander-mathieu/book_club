@@ -26,7 +26,7 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content("Rating: #{@review_1.rating}")
         expect(page).to have_content("Review: #{@review_1.text}")
 
-        expect(page).to have_content("Book: #{@book_1.title}")
+        expect(page).to have_content("#{@book_1.title}")
         expect(page).to have_css("img[src='#{@book_1.image}']")
         expect(page).to have_content("Posted on: #{@review_1.date}")
       end
@@ -36,7 +36,7 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content("Rating: #{@review_2.rating}")
         expect(page).to have_content("Review: #{@review_2.text}")
 
-        expect(page).to have_content("Book: #{@book_2.title}")
+        expect(page).to have_content("#{@book_2.title}")
         expect(page).to have_css("img[src='#{@book_2.image}']")
         expect(page).to have_content("Posted on: #{@review_2.date}")
       end
@@ -46,7 +46,7 @@ RSpec.describe 'As a user', type: :feature do
         expect(page).to have_content("Rating: #{@review_3.rating}")
         expect(page).to have_content("Review: #{@review_3.text}")
 
-        expect(page).to have_content("Book: #{@book_3.title}")
+        expect(page).to have_content("#{@book_3.title}")
         expect(page).to have_css("img[src='#{@book_3.image}']")
         expect(page).to have_content("Posted on: #{@review_3.date}")
       end
@@ -61,7 +61,6 @@ RSpec.describe 'As a user', type: :feature do
 
       expect(page).to have_no_content("Rating:")
       expect(page).to have_no_content("Review:")
-      expect(page).to have_no_content("Book:")
       expect(page).to have_no_content("Posted on:")
     end
 
@@ -79,14 +78,14 @@ RSpec.describe 'As a user', type: :feature do
 
       visit user_path(user)
 
-      expect(page).to have_link("Sort by: Newest")
-      expect(page).to have_link("Sort by: Oldest")
+      expect(page).to have_link("Newest")
+      expect(page).to have_link("Oldest")
 
-      click_link("Sort by: Newest")
+      click_link("Newest")
       expect(review_3.title).to appear_before(review_1.title)
       expect(review_1.title).to appear_before(review_2.title)
 
-      click_link("Sort by: Oldest")
+      click_link("Oldest")
       expect(review_2.title).to appear_before(review_1.title)
       expect(review_1.title).to appear_before(review_3.title)
     end
@@ -126,14 +125,14 @@ RSpec.describe 'As a user', type: :feature do
 
       visit user_path(user)
 
-      expect(page).to have_link("Sort by: Highest Rating")
-      expect(page).to have_link("Sort by: Lowest Rating")
+      expect(page).to have_link("Highest Rating")
+      expect(page).to have_link("Lowest Rating")
 
-      click_link("Sort by: Highest Rating")
+      click_link("Highest Rating")
       expect(review_1.title).to appear_before(review_3.title)
       expect(review_3.title).to appear_before(review_2.title)
 
-      click_link("Sort by: Lowest Rating")
+      click_link("Lowest Rating")
       expect(review_2.title).to appear_before(review_3.title)
       expect(review_3.title).to appear_before(review_1.title)
     end
@@ -152,14 +151,14 @@ RSpec.describe 'As a user', type: :feature do
 
       visit user_path(user)
 
-      expect(page).to have_link("Sort by: Highest Rating")
-      expect(page).to have_link("Sort by: Lowest Rating")
+      expect(page).to have_link("Highest Rating")
+      expect(page).to have_link("Lowest Rating")
 
-      click_link("Sort by: Highest Rating")
+      click_link("Highest Rating")
       expect(review_3.title).to appear_before(review_1.title)
       expect(review_1.title).to appear_before(review_2.title)
 
-      click_link("Sort by: Lowest Rating")
+      click_link("Lowest Rating")
       expect(review_2.title).to appear_before(review_1.title)
       expect(review_1.title).to appear_before(review_3.title)
     end
