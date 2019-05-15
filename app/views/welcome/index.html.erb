@@ -1,5 +1,7 @@
-<h2>Book Nook</h2>
-
-<%= link_to "Authors", authors_path %>
-
-<%= link_to "Books", books_path %>
+<body class="welcome">
+  <div class="centered">
+    <h2 style="color:white; font-size:36px;">Welcome to the Book Nook!</h2>
+    <%= link_to "Browse by Author", authors_path, {style: "color:lightblue; font-size:24px; margin-right:85px;"} %>
+    <%= link_to "Browse by Book", books_path, {style: "color:lightblue; font-size:24px;"} %>
+  </div>
+</body>
