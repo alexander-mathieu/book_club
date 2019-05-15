@@ -1,26 +1,45 @@
-<h2>Welcome to the Book Nook!</h2>
+<div class="heading" style="display:inline-block;">
+  <h2 style="display:inline;">Welcome to the Book Nook!</h2>
+  <%= link_to "Add a New Book", new_book_path, {class: "btn btn-success", style: "margin-bottom:10px;"} %>
+</div>
 
-<a href=<%= books_path(ratings: "high") %> id="rating-high">Sort by: Highest Rating</a>
-<a href=<%= books_path(ratings: "low") %> id="rating-low">Sort by: Lowest Rating</a>
-<a href=<%= books_path(pages: "high") %> id="pages-high">Sort by: Most Pages</a>
-<a href=<%= books_path(pages: "low") %> id="pages-low">Sort by: Least Pages</a>
-<a href=<%= books_path(reviews: "high") %> id="reviews-high">Sort by: Most Reviews</a>
-<a href=<%= books_path(reviews: "low") %> id="reviews-low">Sort by: Least Reviews</a>
+<section class="sort-by">Sort by:
+  <a href="<%= books_path(ratings: "high") %>" id="rating-high">Highest Rating</a>
+  <a href="<%= books_path(ratings: "low") %>" id="rating-low">Lowest Rating</a>
+  <a href="<%= books_path(pages: "high") %>" id="pages-high">Most Pages</a>
+  <a href="<%= books_path(pages: "low") %>" id="pages-low">Least Pages</a>
+  <a href="<%= books_path(reviews: "high") %>" id="reviews-high">Most Reviews</a>
+  <a href="<%= books_path(reviews: "low") %>" id="reviews-low">Least Reviews</a>
+</section>
 
-<section id="book-stats">
+<section id="book-stats" style="display:inline-block; padding-left:410px;">
   <section id="highest-rated" style="display:inline-block;">
-    <% @highest_three_rated.each do |book| %>
-      <h4><%= link_to book.title, book_path(book) %>, <%= book.average_rating %> Stars</h4>
-    <% end %>
+    <div class="card bg-success" style="width: 18rem;">
+      <div class="card-header" style="color:white;">Top Rated:</div>
+      <ul class="list-group list-group-flush">
+        <% @highest_three_rated.each do |book| %>
+          <li class="list-group-item"><%= link_to book.title, book_path(book) %>, <%= book.average_rating %> Stars</li>
+        <% end %>
+    </div>
   </section>
+
   <section id="lowest-rated" style="display:inline-block;">
-    <% @lowest_three_rated.each do |book| %>
-      <h4><%= link_to book.title, book_path(book) %>, <%= book.average_rating %> Stars</h4>
-    <% end %>
+    <div class="card bg-danger" style="width: 18rem;">
+      <div class="card-header" style="color:white;">Lowest Rated:</div>
+      <ul class="list-group list-group-flush">
+        <% @lowest_three_rated.each do |book| %>
+          <li class="list-group-item"><%= link_to book.title, book_path(book) %>, <%= book.average_rating %> Stars</li>
+        <% end %>
+    </div>
   </section>
+
+
   <section id="user-stats" style="display:inline-block;">
-    <% @top_three_users.each do |user| %>
-      <h4><%= link_to user.name, user_path(user) %>, <%= user.review_count %> Reviews</h4>
+    <div class="card bg-warning" style="width: 18rem;">
+      <div class="card-header" style="color:white;">Power Users:</div>
+      <ul class="list-group list-group-flush">
+        <% @top_three_users.each do |user| %>
+          <li class="list-group-item"><%= link_to user.name, user_path(user) %>, <%= user.review_count %> Reviews</li>
     <% end %>
   </section>
 </section>
@@ -28,19 +47,21 @@
 <section id="all-books">
   <% @books.each do |book| %>
   <section class="book" id="book-<%= book.id %>">
-    <img src="<%= book.image %>" alt="<%= book.title %> Cover">
-    <h5><%= link_to book.title, book_path(book) %></h5>
-    <p>Average Rating: <%= book.average_rating %> (<%= book.review_count %>)</p>
-    <p>Authors:</p>
-    <ul>
-      <% book.authors.each do |author| %>
-        <li><%= link_to author.name, author_path(author) %></li>
+    <div class="card" style="width: 18rem;">
+      <img src="<%= book.image %>" class="card-img-top" alt="<%= book.title %> Cover">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to book.title, book_path(book) %></h5>
+        <p class="card-text">Average Rating: <%= book.average_rating %> (<%= book.review_count %>)</p>
+        <p class="card-text">Pages: <%= book.pages %></p>
+        <p class="card-text">Year Published: <%= book.year %></p>
+        <p class="card-text">Authors:</p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <% book.authors.each do |author| %>
+          <p><%= link_to author.name, author_path(author), {class: "list-group-item"} %></p>
         <% end %>
-    </ul>
-    <p>Pages: <%= book.pages %></p>
-    <p>Year Published: <%= book.year %></p>
+      </ul>
+    </div>
   </section>
   <% end %>
 </section>
-
-<%= link_to "Add a New Book", new_book_path %>

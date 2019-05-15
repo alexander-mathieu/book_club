@@ -25,7 +25,7 @@ RSpec.describe "As a user", type: :feature do
     it "I see a navigation bar" do
       visit books_path
 
-      within("#nav") do
+      within(".navbar-nav") do
         expect(page).to have_link("Home")
         expect(page).to have_link("Browse by Author")
         expect(page).to have_link("Browse by Book")
@@ -217,7 +217,7 @@ RSpec.describe "As a user", type: :feature do
       it "to sort by average rating" do
         visit books_path
 
-        click_link 'Sort by: Lowest Rating'
+        click_link 'Lowest Rating'
 
         expect(@book_4.title).to appear_before(@book_2.title)
         expect(@book_2.title).to appear_before(@book_1.title)
@@ -225,7 +225,7 @@ RSpec.describe "As a user", type: :feature do
         expect(@book_3.title).to appear_before(@book_6.title)
         expect(@book_6.title).to appear_before(@book_5.title)
 
-        click_link 'Sort by: Highest Rating'
+        click_link 'Highest Rating'
 
         expect(@book_5.title).to appear_before(@book_6.title)
         expect(@book_6.title).to appear_before(@book_3.title)
@@ -237,12 +237,12 @@ RSpec.describe "As a user", type: :feature do
       it "to sort by number of pages" do
         visit books_path
 
-        click_link 'Sort by: Most Pages'
+        click_link 'Most Pages'
 
         expect(@book_3.title).to appear_before(@book_2.title)
         expect(@book_2.title).to appear_before(@book_1.title)
 
-        click_link 'Sort by: Least Pages'
+        click_link 'Least Pages'
 
         expect(@book_1.title).to appear_before(@book_2.title)
         expect(@book_2.title).to appear_before(@book_3.title)
@@ -253,12 +253,12 @@ RSpec.describe "As a user", type: :feature do
         @review_6 = @book_1.reviews.create!(title: "MOLY", text: "BOOK!", rating: 5, user: @user_2)
         visit books_path
 
-        click_link 'Sort by: Most Reviews'
+        click_link 'Most Reviews'
 
         expect(@book_1.title).to appear_before(@book_2.title)
         expect(@book_2.title).to appear_before(@book_3.title)
 
-        click_link 'Sort by: Least Reviews'
+        click_link 'Least Reviews'
 
         expect(@book_3.title).to appear_before(@book_2.title)
         expect(@book_3.title).to appear_before(@book_1.title)
