@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20190507185045) do
 
   create_table "authors", force: :cascade do |t|
     t.string "name"
-    t.string "image", default: '/assets/default_author.png'
+    t.string "image", default: 'https://torrentfreak.com/wp-content/themes/torrentfreakredux/assets/img/default-author.jpg'
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
