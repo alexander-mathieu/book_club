@@ -37,6 +37,6 @@ rails db:{create,migrate,seed}
 
 ## Additional Information
 
-* The full project specs can be viewed [here](https://github.com/turingschool-projects/BookClub/blob/master/User_Stories.md).
+* The full project specs can be viewed [here](https://github.com/turingschool-projects/BookClub/blob/master/User_Stories.md)
 * The test suite can be run with `bundle exec rspec`
 * Happy browsing!
