@@ -33,10 +33,10 @@ rails db:{create,migrate,seed}
 
 * From the `book_club` project directory, boot up a server with `rails s`
 * Open your browser, and visit `localhost:3000/`
-* explore the site
+* Explore the site!
 
 ## Additional Information
 
-* The full project specs can be viewed [here](https://github.com/turingschool-projects/BookClub/blob/master/User_Stories.md)
+* The full project specs can be viewed [here](https://github.com/turingschool-projects/BookClub/blob/master/User_Stories.md).
 * The test suite can be run with `bundle exec rspec`
 * Happy browsing!
