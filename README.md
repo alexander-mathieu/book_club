@@ -4,16 +4,16 @@
 
 ## About
 
-Welcome to _Book Club_! This is a project completed by [Brennan Ayers](https://github.com/BrennanAyers) and [Alexander Mathieu](https://github.com/alexander-mathieu) during Module 2 at [Turing School of Software & Design](https://turing.io).  The purpose of this application is for users to browse and review books.
+Welcome to _Book Club_! This is a project completed by [Brennan Ayers](https://github.com/BrennanAyers/) and [Alexander Mathieu](https://github.com/alexander-mathieu/) during Module 2 at [Turing School of Software & Design](https://turing.io/).  The purpose of this application is for users to browse and review books.
 
-The deployed site can be viewed [here](https://still-brushlands-58316.herokuapp.com).
+The deployed site can be viewed [here](https://still-brushlands-58316.herokuapp.com/).
 
 ## Local Installation
 
 ### Requirements
 
-* [Ruby 2.4.1](https://www.ruby-lang.org/en/downloads) - Ruby Version
-* [Rails 5.1.7](https://rubyonrails.org) - Rails Version
+* [Ruby 2.4.1](https://www.ruby-lang.org/en/downloads/) - Ruby Version
+* [Rails 5.1.7](https://rubyonrails.org/) - Rails Version
 
 ### Clone
 
@@ -32,7 +32,7 @@ rails db:{create,migrate,seed}
 ### Exploration
 
 * From the `book_club` project directory, boot up a server with `rails s`
-* Open your browser, and visit `localhost:3000/`
+* Open your browser, and visit `http://localhost:3000/`
 * Explore the site!
 
 ## Additional Information
